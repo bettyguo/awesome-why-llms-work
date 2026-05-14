@@ -263,4 +263,4 @@ We thank the maintainers of these lists; this repo would have been harder to wri
 
 ## Acknowledgements
 
-The framing of this repo owes obvious debts to Imre Lakatos (research programmes), Karl Popper (falsifiability), and the long line of mechanistic-interpretability researchers — Chris Olah, Neel Nanda, Catherine Olsson, the Anthropic interpretability team, EleutherAI, MATS — who treated "what is the model actually doing?" as a serious empirical question well before the rest of the field caught up. Errors are entirely ours.
+The framing of this repo owes obvious debts to Imre Lakatos (research programmes), Karl Popper (falsifiability), and the long line of mechanistic-interpretability researchers: Chris Olah, Neel Nanda, Catherine Olsson, the Anthropic interpretability team, EleutherAI, MATS, who treated "what is the model actually doing?" as a serious empirical question well before the rest of the field caught up. Errors are entirely ours.

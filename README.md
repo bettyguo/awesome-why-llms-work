@@ -1,13 +1,32 @@
-# Why Do LLMs Work? — A Falsifiable-Hypothesis Atlas
+<p align="center">
+  <img src="hero.svg" alt="Why do LLMs work? — A falsifiable-hypothesis atlas of five competing research programmes" width="100%" />
+</p>
 
-> A map of the five competing research programmes that try to explain why large language models work, with explicit epistemic status, falsification ledgers, and runnable mini-experiments.
+<h1 align="center">Why Do LLMs Work? — A Falsifiable-Hypothesis Atlas</h1>
 
-[![License: CC BY 4.0](https://img.shields.io/badge/Content-CC--BY--4.0-lightgrey.svg)](LICENSE-content)
-[![License: MIT](https://img.shields.io/badge/Code-MIT-blue.svg)](LICENSE-code)
-[![Link check](https://github.com/OWNER/awesome-why-llms-work/actions/workflows/link-check.yml/badge.svg)](.github/workflows/link-check.yml)
-[![Citation verify](https://github.com/OWNER/awesome-why-llms-work/actions/workflows/citation-verify.yml/badge.svg)](.github/workflows/citation-verify.yml)
-![Papers tracked](https://img.shields.io/badge/papers-tracked%20%26%20verified-success)
-![Last updated](https://img.shields.io/badge/last%20updated-2026--05--14-informational)
+<p align="center">
+  <em>The five-programmes map: every claim carries an epistemic status, every status change requires a cited paper.</em>
+</p>
+
+<p align="center">
+  <a href="https://OWNER.github.io/awesome-why-llms-work/"><strong>🌐 Live site</strong></a>
+  &nbsp;·&nbsp;
+  <a href="https://OWNER.github.io/awesome-why-llms-work/ledger.html"><strong>📊 Interactive ledger</strong></a>
+  &nbsp;·&nbsp;
+  <a href="https://OWNER.github.io/awesome-why-llms-work/superposition-demo.html"><strong>🧪 Run the demo</strong></a>
+  &nbsp;·&nbsp;
+  <a href="notebooks/"><strong>📓 Notebooks</strong></a>
+</p>
+
+<p align="center">
+  <a href="LICENSE-content"><img src="https://img.shields.io/badge/Content-CC--BY--4.0-lightgrey.svg" alt="License: CC BY 4.0"></a>
+  <a href="LICENSE-code"><img src="https://img.shields.io/badge/Code-MIT-blue.svg" alt="License: MIT"></a>
+  <a href=".github/workflows/link-check.yml"><img src="https://github.com/OWNER/awesome-why-llms-work/actions/workflows/link-check.yml/badge.svg" alt="Link check"></a>
+  <a href=".github/workflows/citation-verify.yml"><img src="https://github.com/OWNER/awesome-why-llms-work/actions/workflows/citation-verify.yml/badge.svg" alt="Citation verify"></a>
+  <img src="https://img.shields.io/badge/papers-42%20verified-success" alt="42 papers verified">
+  <img src="https://img.shields.io/badge/claims-41%20tracked-informational" alt="41 claims tracked">
+  <img src="https://img.shields.io/badge/programmes-5%20core%20%2B%20adjacent-blueviolet" alt="5 programmes">
+</p>
 
 ---
 
@@ -20,6 +39,20 @@ This repo treats "why do LLMs work?" as **five competing research programmes** i
 For every claim we track, we record an **epistemic status** — 🟢 supported, 🟡 contested, 🔴 refuted, ⚪ open — and a **falsifier** — the kind of evidence that would change the status. Status changes are themselves pull requests: see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 If you want a flat bibliography, see the [companion repos](#related-and-companion-repos) we link to. If you want a map of *what we actually believe, why, and how confidently*, you are in the right place.
+
+---
+
+## 🌐 The live site
+
+A polished, interactive GitHub Pages companion lives at **<https://OWNER.github.io/awesome-why-llms-work/>** (replace `OWNER` after launch). It pulls structured data straight from the per-programme files in this repo and presents:
+
+| Page | What you get |
+|------|-------------|
+| **[Landing](https://OWNER.github.io/awesome-why-llms-work/)** | Hero, five programme cards, live status snapshot, embedded taxonomy diagram. |
+| **[Interactive ledger](https://OWNER.github.io/awesome-why-llms-work/ledger.html)** | All 41 tracked claims, filterable by programme and status, full-text searchable, row-expand to see supporting / refuting citations. |
+| **[Superposition demo](https://OWNER.github.io/awesome-why-llms-work/superposition-demo.html)** | Trains a 2-layer model on sparse synthetic features **in your browser** and shows the encoder columns arranging into regular-polygon configurations (digon → triangle → pentagon → hexagon) as you slide sparsity. The Elhage-et-al-2022 toy model, no install. |
+
+Source: [`docs/`](docs/) (vanilla HTML/CSS/JS + Tailwind via CDN, no build step). Deploy is wired up in [`.github/workflows/pages.yml`](.github/workflows/pages.yml).
 
 ---
 
@@ -116,6 +149,8 @@ Programmes interact. The synthesis essays argue for specific relationships betwe
 - **[Compression ⇔ Superposition](essays/compression-and-superposition.md)** — if compression-is-intelligence is right and if superposition is the mechanism the model uses to compress, the two programmes are aspects of one phenomenon. What would falsify that?
 - **[Circuits ⇔ ICL-as-Bayes](essays/circuits-and-icl-bayes.md)** — Bayesian and circuit-level explanations of ICL look incompatible at first glance. They are not; we argue they are the same explanation at different levels of abstraction, and we identify the specific places they make different predictions.
 - **[Emergence ⇔ Reasoning models](essays/emergence-vs-reasoning-models.md)** — what test-time-compute scaling (o1, R1, s1) does and does not tell us about emergence.
+- **[SLT ⇔ Grokking](essays/slt-and-grokking.md)** — Singular Learning Theory predicts phase transitions; mechanistic interpretability tells us what each phase computes; the bridge is the same picture at three levels. Three predictions, one of which would promote SLT from adjacent to core programme.
+- **[Codebook vs. Continuous](essays/codebook-vs-continuous.md)** — are linear-direction features the *unique* useful description? Tamkin et al.'s discrete-codebook alternative is a serious challenge; we propose the single experiment that would settle it.
 - **[How to falsify an LLM theory](essays/how-to-falsify-an-llm-theory.md)** — methodological essay; addresses the strongest critiques of this repo and of the programme-map approach.
 
 ---

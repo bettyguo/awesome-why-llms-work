@@ -15,6 +15,27 @@ Status-change-only entries live in [`tracker/falsification-events.md`](tracker/f
 - `PAPERS.md` (generated artifact; see above).
 - `CHANGELOG.md` (this file).
 
+## [0.3.0] — 2026-05-14 — Live site & visual upgrade
+
+### Added
+
+- **GitHub Pages site** under `docs/`:
+  - `docs/index.html` — landing with hero, live status snapshot, programme cards, embedded taxonomy.
+  - `docs/ledger.html` — filterable / searchable / row-expandable table of all 41 tracked claims.
+  - `docs/superposition-demo.html` — fully in-browser reproduction of the Elhage-et-al-2022 toy model of superposition. Trains a 2-layer net on sparse synthetic features and shows the encoder columns arranging into regular-polygon configurations as the user slides sparsity. Pure JS, no install.
+  - `docs/styles.css`, `docs/js/{nav,main,ledger,superposition}.js`.
+- **`scripts/extract_ledger_json.py`** — parses the per-claim ledger tables out of `programmes/*.md` into `docs/data/ledger.json`. The site is a *view* over the canonical Markdown.
+- **`scripts/render_hero.py`** — generates a 1600×480 dark hero banner SVG/PNG (used at the top of README).
+- **Two more synthesis essays**:
+  - [`essays/slt-and-grokking.md`](essays/slt-and-grokking.md) — bridges Singular Learning Theory and grokking; proposes three predictions whose joint confirmation would promote SLT from adjacent to core programme.
+  - [`essays/codebook-vs-continuous.md`](essays/codebook-vs-continuous.md) — Tamkin et al.'s codebook features vs. the strong Linear Representation Hypothesis; proposes the single comparison experiment that would settle it.
+- **`.github/workflows/pages.yml`** — builds the site (regenerating `ledger.json`, `taxonomy.svg`, `hero.svg` on the fly), flattens asset paths, deploys to GitHub Pages.
+- **README**: real hero banner image, live-site callout, badges row upgraded to include claims-tracked and programmes counts.
+
+### Changed
+
+- **`scripts/render_taxonomy.py`** rewritten for a polished design — gradient programme cards, header strips, drop-shadow filter, white-rounded edge labels, footer attribution. Same 16:9 social-preview-friendly aspect.
+
 ---
 
 ## [0.2.0] — 2026-05-14 — Round-two expansion

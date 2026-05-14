@@ -35,6 +35,8 @@ If you want a flat bibliography, see the [companion repos](#related-and-companio
 - [What's new](#whats-new)
 - [Adjacent programmes](#adjacent-programmes)
 - [Glossary](#glossary)
+- [Tools](#tools)
+- [FAQ](#faq)
 - [Contributing](#contributing)
 - [Citation](#citation)
 - [Related and companion repos](#related-and-companion-repos)
@@ -125,11 +127,11 @@ A rolled-up count of claim statuses across the repo. Regenerate via `python scri
 | Programme | 🟢 Supported | 🟡 Contested | 🔴 Refuted | ⚪ Open | Total |
 |-----------|---------------|---------------|---------------|---------------|-------|
 | 01 Compression | 3 | 2 | 0 | 2 | 7 |
-| 02 Superposition / LRH | 2 | 3 | 0 | 2 | 7 |
-| 03 Circuits | 3 | 2 | 0 | 2 | 7 |
-| 04 ICL-as-Bayes | 3 | 2 | 1 | 1 | 7 |
+| 02 Superposition / LRH | 5 | 3 | 0 | 2 | 10 |
+| 03 Circuits | 5 | 3 | 0 | 2 | 10 |
+| 04 ICL-as-Bayes | 5 | 2 | 2 | 0 | 9 |
 | 05 Emergence | 3 | 1 | 1 | 1 | 6 |
-| **Total** | **14** | **10** | **2** | **8** | **34** |
+| **Total** | **21** | **11** | **3** | **7** | **42** |
 <!-- LEDGER:END -->
 
 For the per-claim breakdown, see [`tracker/falsification-events.md`](tracker/falsification-events.md).
@@ -160,6 +162,18 @@ If you think one of these deserves its own programme, open a [`new-programme.md`
 ## Glossary
 
 See [`GLOSSARY.md`](GLOSSARY.md). 60+ terms, each with a one-paragraph definition and a "see also" link. Recommended starting points if you are new: *induction head, superposition, polysemanticity, sparse autoencoder, linear representation, in-context learning, scaling law, grokking, circuit, ablation, activation patching, logit lens*.
+
+---
+
+## Tools
+
+See [`TOOLS.md`](TOOLS.md). An opinionated index of the libraries and services this repo's programmes are *load-bearing* on — TransformerLens, SAELens, nnsight, Pyvene, Neuronpedia, Goodfire Ember, ACDC / EAP, circuit-tracer. We deliberately stop at "load-bearing"; for exhaustive tool directories, see the [related repos](#related-and-companion-repos).
+
+---
+
+## FAQ
+
+See [`FAQ.md`](FAQ.md) for the questions we get most. Highlights: *why five programmes*, *isn't your taxonomy itself contested*, *how do I disagree with a status verdict*, *why isn't scaling-laws a programme*, *is this safety / alignment commentary* (no).
 
 ---
 

@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.venv/
+venv/
+env/
+.python-version
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb_meta
+
+# Notebook outputs we don't want committed
+notebooks/.cache/
+notebooks/data/cache/
+
+# Local config and editor cruft
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# CI / tool caches
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+.tox/
+.coverage
+htmlcov/
+
+# Secrets / local-only
+.env
+.env.local
+*.local
+secrets.*
+
+# Large auto-generated data
+data/raw/
+data/processed/

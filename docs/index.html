@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Why do LLMs work? — A Falsifiable-Hypothesis Atlas</title>
+  <meta name="description"
+        content="A map of five competing research programmes that try to explain why large language models work, with explicit epistemic status, falsification ledgers, and runnable mini-experiments." />
+  <meta property="og:title" content="Why do LLMs work? — A Falsifiable-Hypothesis Atlas" />
+  <meta property="og:description"
+        content="Five research programmes. 42 papers, individually verified. 41 claims with 🟢/🟡/🔴/⚪ status. Synthesis essays. Runnable notebooks." />
+  <meta property="og:image" content="../hero.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-[var(--bg)] text-[var(--fg)]">
+
+<div id="site-nav"></div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="max-w-6xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-12 gap-10 items-center">
+    <div class="md:col-span-7">
+      <p class="uppercase tracking-widest text-xs font-semibold text-slate-400 mb-3">
+        The Five Programmes Map
+      </p>
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-[1.05]">
+        Why do <span class="bg-gradient-to-r from-blue-400 via-emerald-400 to-orange-400 bg-clip-text text-transparent">LLMs work</span>?
+      </h1>
+      <p class="mt-5 text-lg md:text-xl text-slate-300 max-w-2xl">
+        An opinionated, falsification-anchored atlas of the five research
+        programmes that try to answer that question. Every claim carries an
+        epistemic status. Every status change requires a cited paper.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="ledger.html"
+           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-white text-slate-900 font-semibold hover:bg-slate-100 transition-colors">
+          Browse the ledger →
+        </a>
+        <a href="superposition-demo.html"
+           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-white/10 text-white font-semibold hover:bg-white/15 transition-colors border border-white/20">
+          Run the demo
+        </a>
+        <a href="https://github.com/OWNER/awesome-why-llms-work"
+           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-white font-medium hover:bg-white/5 transition-colors">
+          ★ on GitHub
+        </a>
+      </div>
+      <div class="mt-8 flex flex-wrap gap-2">
+        <span class="tag-chip">5 programmes</span>
+        <span class="tag-chip">42 papers · verified</span>
+        <span class="tag-chip">41 tracked claims</span>
+        <span class="tag-chip">5 runnable notebooks</span>
+        <span class="tag-chip">CC-BY-4.0 · MIT</span>
+      </div>
+    </div>
+    <div class="md:col-span-5">
+      <div class="rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur p-6">
+        <p class="text-xs uppercase tracking-widest text-slate-400 mb-4">
+          status snapshot
+        </p>
+        <div id="status-snapshot" class="space-y-3">
+          <!-- filled by main.js -->
+        </div>
+        <p class="text-xs text-slate-500 mt-4">
+          Counts auto-updated from <code class="text-slate-300">programmes/*</code> via
+          <code class="text-slate-300">scripts/extract_ledger_json.py</code>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why this exists -->
+<section class="max-w-5xl mx-auto px-6 py-16">
+  <h2 class="text-3xl font-bold mb-6">Why a programme map (not a paper dump)?</h2>
+  <div class="prose prose-slate dark:prose-invert max-w-none">
+    <p>
+      The existing <code>awesome-*</code> lists in interpretability and LLM theory are
+      <b>flat directories of papers</b>. They link to good work, but they do not tell you
+      which claims are <i>alive</i>, which are <i>dead</i>, and which are still being fought over.
+      They treat the field as a settled science rather than as a young one with sharply
+      contested foundations.
+    </p>
+    <p>
+      This repo treats <i>why do LLMs work?</i> as <b>five competing research programmes</b>
+      in the Lakatosian sense. Each programme has a <i>hard core</i> (a falsifiable central
+      claim), a <i>protective belt</i> (auxiliary hypotheses that absorb local refutations),
+      and an <i>evidence ledger</i>. Every tracked claim has a status — 🟢 supported,
+      🟡 contested, 🔴 refuted, ⚪ open — and a falsifier.
+    </p>
+  </div>
+</section>
+
+<!-- Programmes grid -->
+<section class="max-w-6xl mx-auto px-6 pb-8">
+  <h2 class="text-3xl font-bold mb-2">The five programmes</h2>
+  <p class="text-slate-600 dark:text-slate-400 mb-8">
+    Each card links to the full programme file in the repo.
+  </p>
+  <div id="programmes-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <!-- filled by main.js -->
+  </div>
+</section>
+
+<!-- Taxonomy embed -->
+<section class="max-w-6xl mx-auto px-6 py-16">
+  <h2 class="text-3xl font-bold mb-3">The taxonomy at a glance</h2>
+  <p class="text-slate-600 dark:text-slate-400 mb-6">
+    Programmes, key claims with status, and the supports / tension relations
+    between programmes. Rendered from
+    <code>scripts/render_taxonomy.py</code>.
+  </p>
+  <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
+    <img src="../taxonomy.svg" alt="Five Programmes Map" class="w-full block bg-white" />
+  </div>
+</section>
+
+<!-- Three things -->
+<section class="max-w-6xl mx-auto px-6 py-16">
+  <h2 class="text-3xl font-bold mb-8">Three things you can do right now</h2>
+  <div class="grid md:grid-cols-3 gap-5">
+    <a href="ledger.html"
+       class="block p-6 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
+      <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 flex items-center justify-center font-bold mb-4">L</div>
+      <h3 class="font-semibold text-lg mb-1">Browse the falsification ledger</h3>
+      <p class="text-sm text-slate-600 dark:text-slate-400">
+        All 41 tracked claims, filterable by programme and status. The page is
+        the audit trail of what the field actually believes right now.
+      </p>
+    </a>
+    <a href="superposition-demo.html"
+       class="block p-6 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
+      <div class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-bold mb-4">D</div>
+      <h3 class="font-semibold text-lg mb-1">Run the superposition demo</h3>
+      <p class="text-sm text-slate-600 dark:text-slate-400">
+        See <i>n</i> features packed into <i>d&lt;n</i> dimensions as a function of sparsity —
+        the Elhage-et-al-2022 toy model, interactive in your browser, no install.
+      </p>
+    </a>
+    <a href="https://github.com/OWNER/awesome-why-llms-work/tree/main/notebooks"
+       class="block p-6 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
+      <div class="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-300 flex items-center justify-center font-bold mb-4">N</div>
+      <h3 class="font-semibold text-lg mb-1">Open a notebook on Colab</h3>
+      <p class="text-sm text-slate-600 dark:text-slate-400">
+        Five teaching notebooks — one per programme — that each run in under
+        5 min on a free Colab T4 and end with an explicit "what this does <i>not</i> show."
+      </p>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="max-w-6xl mx-auto px-6 flex flex-wrap items-center justify-between gap-3">
+    <div>
+      <span class="font-semibold text-slate-700 dark:text-slate-300">why-llms-work</span>
+      · content CC-BY-4.0 · code MIT
+    </div>
+    <div class="text-xs">
+      Rendered from <code class="font-mono">programmes/*</code> · last generated
+      <span id="generated-at"></span>.
+    </div>
+  </div>
+</footer>
+
+<script src="js/nav.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>

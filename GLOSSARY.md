@@ -70,6 +70,10 @@ A vector in activation space whose presence/absence (or magnitude) the model use
 
 The class of methods (including SAEs) that decompose activations into a sparse, overcomplete dictionary of "atoms" (features). The current standard tool for surfacing the directions that an LM uses. *See also*: [Sparse autoencoder](#sparse-autoencoder).
 
+### Attribution graph
+
+A directed graph whose nodes are model features (or components) and whose edges encode the causal contribution of one feature to another's activation under a target prompt. The unit of analysis in the Anthropic *Circuit Tracing* (2025) methodology. The scaled-up successor to head-level circuit diagrams. *See also*: [Programme 03](programmes/03-circuits-and-biology.md).
+
 ### Edge attribution patching
 
 A variant of attribution patching where the unit is an *edge* (a pair-wise composition of components) rather than a component. Important for graph-structured circuit discovery. *See also*: [Attribution patching](#attribution-patching), [Programme 03](programmes/03-circuits-and-biology.md).
@@ -94,6 +98,10 @@ A behaviorally relevant, interpretable variable that a model represents. Usually
 
 The phenomenon where, as an SAE dictionary grows wider, a single feature splits into multiple finer-grained features. Complicates the "right number of features" question. *See also*: [Programme 02](programmes/02-superposition-linear-rep.md).
 
+### Function vector
+
+A residual-stream vector that represents an input-output function (a "task") and that, when transported by attention heads or injected into a fresh forward pass, drives the model to execute the function. Established in Todd et al. 2023 ([arXiv:2310.15213](https://arxiv.org/abs/2310.15213)); closely related to the *task vector* of Hendel et al. 2023. *See also*: [Task vector](#task-vector), [Programme 04](programmes/04-icl-as-bayes-meta-learning.md).
+
 ### Free Energy Principle
 
 Friston's framework treating cognition as variational free-energy minimization. Conceptually related to (and arguably identical with) predictive coding and to the Bayesian frame on ICL. *See also*: [Adjacent programmes](programmes/adjacent-programmes.md#predictive-coding--free-energy).
@@ -117,6 +125,10 @@ The model's ability to perform a task given only examples in the prompt, without
 ### Interpretability
 
 The broad family of methods aimed at understanding what trained networks compute and how. Mechanistic interpretability is one subset, oriented toward reverse-engineering circuits and features. *See also*: [Mechanistic interpretability](#mechanistic-interpretability).
+
+### JumpReLU SAE
+
+A sparse-autoencoder architecture that replaces the activation function with a JumpReLU (a learnable per-feature threshold). Improves the reconstruction-vs-sparsity Pareto frontier over both vanilla L1-SAEs and gated SAEs (Rajamanoharan et al. 2024, [arXiv:2407.14435](https://arxiv.org/abs/2407.14435)). *See also*: [Sparse autoencoder](#sparse-autoencoder), [Programme 02](programmes/02-superposition-linear-rep.md).
 
 ### Kolmogorov complexity
 
@@ -153,6 +165,10 @@ The property of a feature (or neuron) that activates for a single, interpretable
 ### MLP / FFN
 
 The position-wise feedforward sub-component of a transformer block (two linear layers and a nonlinearity). Stores much of the "knowledge" content of models in many analyses; the home of many monosemantic features. *See also*: [Programme 03](programmes/03-circuits-and-biology.md).
+
+### nnsight
+
+A lazy-tensor, remote-execution interface for inspecting and intervening on large language models without paying the per-forward-pass GPU cost locally. Maintained by the Bau lab / NDIF (National Deep Inference Facility). Useful when the model is bigger than your single-GPU budget. *See also*: [TOOLS.md](TOOLS.md#nnsight).
 
 ### Neuron
 
@@ -202,9 +218,17 @@ The shared activation channel of a transformer: each block reads from and writes
 
 An empirical functional form (typically a power law) for some performance measure as a function of model size, data, or compute. The measurement framework used by Programmes 01 and 05; not itself a programme. *See also*: [Programme 05](programmes/05-emergence-and-reasoning.md).
 
+### Sparse Feature Circuits
+
+A class of circuit-discovery methods that operate over *features* (SAE atoms) rather than over *components* (heads or neurons). Demonstrated at scale in Marks et al. 2024 ([arXiv:2403.19647](https://arxiv.org/abs/2403.19647)); a methodological bridge between programmes 02 and 03. *See also*: [Programme 02](programmes/02-superposition-linear-rep.md), [Programme 03](programmes/03-circuits-and-biology.md).
+
 ### Sparse autoencoder (SAE)
 
 An autoencoder trained on the activations of a target model with a sparsity constraint, producing a dictionary of feature directions. The dominant tool for surfacing features under the LRH frame. *See also*: [Feature](#feature), [Programme 02](programmes/02-superposition-linear-rep.md).
+
+### Representation engineering
+
+A "top-down" interpretability/control framework introduced by Zou et al. 2023 ([arXiv:2310.01405](https://arxiv.org/abs/2310.01405)): start from a high-level cognitive concept (honesty, harmlessness, power-seeking), find its representation by paired-stimulus contrast, then intervene on the representation directly. Closely related to *activation steering* / *steering vectors*; whether RepE is methodologically distinct from steering-by-other-names is debated. *See also*: [Steering vector](#steering-vector), [Programme 03](programmes/03-circuits-and-biology.md).
 
 ### Singular Learning Theory (SLT)
 
@@ -229,6 +253,10 @@ The property of trained networks of representing more features than they have ne
 ### Task vector
 
 A direction in residual-stream space that, when added to the activations of a related task, switches behavior to the new task without retraining; a candidate mechanism for ICL on natural tasks. *See also*: [Programme 04](programmes/04-icl-as-bayes-meta-learning.md).
+
+### Task vector
+
+A residual-stream vector formed by compressing in-context demonstrations of a task; injecting it later, even without the demonstrations, drives the model to execute the task. Established by Hendel, Geva, Globerson 2023 ([arXiv:2310.15916](https://arxiv.org/abs/2310.15916)); generalized to *function vectors* by Todd et al. 2023. *See also*: [Function vector](#function-vector), [Programme 04](programmes/04-icl-as-bayes-meta-learning.md).
 
 ### Test-time compute (TTC)
 

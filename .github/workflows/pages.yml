@@ -1,0 +1,81 @@
+name: pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "programmes/**"
+      - "scripts/extract_ledger_json.py"
+      - "scripts/render_taxonomy.py"
+      - "scripts/render_hero.py"
+      - "taxonomy.svg"
+      - "hero.svg"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Regenerate ledger data
+        run: |
+          python scripts/extract_ledger_json.py
+
+      - name: Regenerate diagrams (SVG only — PNG optional)
+        run: |
+          python scripts/render_taxonomy.py
+          python scripts/render_hero.py
+
+      - name: Assemble site root
+        run: |
+          # Pages serves from a single directory; we copy the top-level
+          # assets used by the docs/ HTML into a build/ dir alongside docs/.
+          mkdir -p build
+          cp -r docs/. build/
+          # The HTML uses ../taxonomy.svg and ../hero.png — flatten:
+          cp taxonomy.svg build/taxonomy.svg
+          cp taxonomy.png build/taxonomy.png 2>/dev/null || true
+          cp hero.svg build/hero.svg
+          cp hero.png build/hero.png 2>/dev/null || true
+          # Notebook links go to GitHub; nothing else to copy here.
+          # The image src paths in docs/*.html use ../taxonomy.svg etc., which
+          # resolve to build/taxonomy.svg one level up when served from build/.
+          # That's wrong for a flat root — patch in place:
+          find build -name "*.html" -print0 | xargs -0 sed -i \
+            -e 's|src="\.\./taxonomy\.svg"|src="taxonomy.svg"|g' \
+            -e 's|src="\.\./taxonomy\.png"|src="taxonomy.png"|g' \
+            -e 's|src="\.\./hero\.svg"|src="hero.svg"|g' \
+            -e 's|content="\.\./hero\.png"|content="hero.png"|g'
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

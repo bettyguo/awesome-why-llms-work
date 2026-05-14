@@ -1,0 +1,25 @@
+# gitleaks configuration for awesome-why-llms-work
+# Run locally:   gitleaks detect --source . --config .gitleaks.toml
+# In CI:         see .github/workflows/secret-scan.yml
+
+# We inherit gitleaks' default ruleset and add a few project-specific allow-lists
+# for the inevitable false positives that come from research citations (arXiv IDs
+# do not look like secrets, but some heuristics misfire on numeric strings).
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "false positives we accept"
+
+# arXiv IDs are 4-digit-year + dot + 4-or-5-digit suffix; never secrets.
+regexes = [
+  '''arxiv\.org/abs/\d{4}\.\d{4,5}''',
+]
+
+# Notebook output cells get cleared before commit, but a stray seed integer
+# like SEED = 42 is not a secret either. The default ruleset does not flag
+# these; we record the policy here for documentation.
+paths = [
+  '''notebooks/figures/''',
+]

@@ -1,41 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Helvetica, Arial, sans-serif">
-<rect width="1280" height="720" fill="#fbfbfb"/><text x="640" y="36" text-anchor="middle" font-size="22" font-weight="700">Why LLMs Work — Five Programmes Map</text>
-<rect x="60" y="80" width="300" height="200" rx="14" ry="14" fill="white" stroke="#1f77b4" stroke-width="2.5"/>
-<text x="72" y="102" font-size="13" font-weight="700" fill="#1f77b4">01 — Compression-as-Intelligence</text>
-<rect x="60" y="320" width="300" height="200" rx="14" ry="14" fill="white" stroke="#2ca02c" stroke-width="2.5"/>
-<text x="72" y="342" font-size="13" font-weight="700" fill="#2ca02c">02 — Superposition / LRH</text>
-<rect x="520" y="80" width="300" height="200" rx="14" ry="14" fill="white" stroke="#d62728" stroke-width="2.5"/>
-<text x="532" y="102" font-size="13" font-weight="700" fill="#d62728">03 — Circuits / Biology</text>
-<rect x="520" y="320" width="300" height="200" rx="14" ry="14" fill="white" stroke="#9467bd" stroke-width="2.5"/>
-<text x="532" y="342" font-size="13" font-weight="700" fill="#9467bd">04 — ICL as Bayes / Meta-learning</text>
-<rect x="980" y="200" width="240" height="240" rx="14" ry="14" fill="white" stroke="#ff7f0e" stroke-width="2.5"/>
-<text x="992" y="222" font-size="13" font-weight="700" fill="#ff7f0e">05 — Emergence (and Reasoning)</text>
-<text x="78" y="110" font-size="11" fill="#222"><tspan>🟡</tspan> bpb ≈ linear in benchmark</text>
-<text x="78" y="150" font-size="11" fill="#222"><tspan>🟢</tspan> LMs are lossless compressors</text>
-<text x="78" y="190" font-size="11" fill="#222"><tspan>⚪</tspan> Hutter / Solomonoff anchor</text>
-<text x="78" y="350" font-size="11" fill="#222"><tspan>🟢</tspan> n features into d&lt;n dimensions</text>
-<text x="78" y="390" font-size="11" fill="#222"><tspan>🟢</tspan> features ≈ linear directions</text>
-<text x="78" y="430" font-size="11" fill="#222"><tspan>⚪</tspan> cross-family universality</text>
-<text x="538" y="110" font-size="11" fill="#222"><tspan>🟢</tspan> induction heads (universal)</text>
-<text x="538" y="150" font-size="11" fill="#222"><tspan>🟢</tspan> IOI / circuit discovery</text>
-<text x="538" y="190" font-size="11" fill="#222"><tspan>⚪</tspan> circuits explain OOD</text>
-<text x="538" y="350" font-size="11" fill="#222"><tspan>🟢</tspan> ICL tracks Bayes-optimal (toy)</text>
-<text x="538" y="390" font-size="11" fill="#222"><tspan>🟢</tspan> ICL = portfolio of algorithms</text>
-<text x="538" y="430" font-size="11" fill="#222"><tspan>🟡</tspan> ICL Bayes-optimal on natural data</text>
-<text x="538" y="470" font-size="11" fill="#222"><tspan>🔴</tspan> asymptotic-Bayes equilibrium</text>
-<text x="998" y="230" font-size="11" fill="#222"><tspan>🔴</tspan> strong (Wei) emergence</text>
-<text x="998" y="270" font-size="11" fill="#222"><tspan>🟢</tspan> metric-artifact (Schaeffer)</text>
-<text x="998" y="310" font-size="11" fill="#222"><tspan>🟡</tspan> test-time-compute scaling</text>
-<defs><marker id="arrow-support" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#444"/></marker><marker id="arrow-tension" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#b22222"/></marker></defs>
-<line x1="210" y1="240" x2="210" y2="360" stroke="#444" stroke-width="2"  marker-end="url(#arrow-support)"/>
-<text x="210" y="294" text-anchor="middle" font-size="10" fill="#444">implies (mechanism)</text>
-<line x1="280" y1="393" x2="600" y2="207" stroke="#444" stroke-width="2"  marker-end="url(#arrow-support)"/>
-<text x="440" y="294" text-anchor="middle" font-size="10" fill="#444">feature graph → circuit graph</text>
-<line x1="670" y1="240" x2="670" y2="360" stroke="#444" stroke-width="2"  marker-end="url(#arrow-support)"/>
-<text x="670" y="294" text-anchor="middle" font-size="10" fill="#444">induction head ↔ ICL</text>
-<line x1="747" y1="407" x2="1023" y2="333" stroke="#b22222" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrow-tension)"/>
-<text x="885" y="364" text-anchor="middle" font-size="10" fill="#b22222">transient ICL ↔ training-time emergence</text>
-<line x1="289" y1="189" x2="1021" y2="311" stroke="#b22222" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrow-tension)"/>
-<text x="655" y="244" text-anchor="middle" font-size="10" fill="#b22222">reasoning models reopen compression-capability gap</text>
-<text x="60" y="680" font-size="11" fill="#444">🟢 supported · 🟡 contested · 🔴 refuted · ⚪ open</text><text x="60" y="698" font-size="11" fill="#444">solid arrow = supports / implies     dashed red arrow = in tension with</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" font-family="Inter, ui-sans-serif, system-ui, sans-serif">
+<defs>
+<linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#f9fafb"/></linearGradient>
+<linearGradient id="hdr-01" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%"   stop-color="#2563eb" stop-opacity="0.95"/><stop offset="100%" stop-color="#2563eb" stop-opacity="0.75"/></linearGradient>
+<linearGradient id="hdr-02" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%"   stop-color="#059669" stop-opacity="0.95"/><stop offset="100%" stop-color="#059669" stop-opacity="0.75"/></linearGradient>
+<linearGradient id="hdr-03" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%"   stop-color="#dc2626" stop-opacity="0.95"/><stop offset="100%" stop-color="#dc2626" stop-opacity="0.75"/></linearGradient>
+<linearGradient id="hdr-04" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%"   stop-color="#7c3aed" stop-opacity="0.95"/><stop offset="100%" stop-color="#7c3aed" stop-opacity="0.75"/></linearGradient>
+<linearGradient id="hdr-05" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%"   stop-color="#ea580c" stop-opacity="0.95"/><stop offset="100%" stop-color="#ea580c" stop-opacity="0.75"/></linearGradient>
+<filter id="card-shadow" x="-10%" y="-10%" width="120%" height="130%"><feGaussianBlur in="SourceAlpha" stdDeviation="4"/><feOffset dx="0" dy="2" result="off"/><feComponentTransfer><feFuncA type="linear" slope="0.18"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<marker id="arrow-supports" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/></marker><marker id="arrow-tension" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#b91c1c"/></marker>
+</defs>
+<rect width="1280" height="720" fill="url(#bg)"/>
+<text x="640" y="50" text-anchor="middle" font-size="26" font-weight="800" fill="#0f172a">Why LLMs Work — the Five Programmes Map</text>
+<text x="640" y="78" text-anchor="middle" font-size="14" font-weight="400" fill="#475569">A falsifiable-hypothesis atlas of why large language models actually work. Status: 🟢 supported · 🟡 contested · 🔴 refuted · ⚪ open</text>
+<line x1="235" y1="265" x2="235" y2="345" stroke="#475569" stroke-width="2"  marker-end="url(#arrow-supports)"/>
+<rect x="161" y="287" width="149" height="20" rx="10" ry="10" fill="white" stroke="#475569" stroke-width="1"/>
+<text x="235" y="301" text-anchor="middle" font-size="10.5" fill="#475569" font-weight="600">implies (mechanism)</text>
+<line x1="319" y1="381" x2="561" y2="229" stroke="#475569" stroke-width="2"  marker-end="url(#arrow-supports)"/>
+<rect x="331" y="287" width="219" height="20" rx="10" ry="10" fill="white" stroke="#475569" stroke-width="1"/>
+<text x="440" y="301" text-anchor="middle" font-size="10.5" fill="#475569" font-weight="600">feature graph → circuit graph</text>
+<line x1="645" y1="265" x2="645" y2="345" stroke="#475569" stroke-width="2"  marker-end="url(#arrow-supports)"/>
+<rect x="567" y="287" width="156" height="20" rx="10" ry="10" fill="white" stroke="#475569" stroke-width="1"/>
+<text x="645" y="301" text-anchor="middle" font-size="10.5" fill="#475569" font-weight="600">induction head ↔ ICL</text>
+<line x1="739" y1="403" x2="956" y2="367" stroke="#b91c1c" stroke-width="2" stroke-dasharray="7,5" marker-end="url(#arrow-tension)"/>
+<rect x="703" y="367" width="289" height="20" rx="10" ry="10" fill="white" stroke="#b91c1c" stroke-width="1"/>
+<text x="847" y="381" text-anchor="middle" font-size="10.5" fill="#b91c1c" font-weight="600">transient ICL ↔ training-time emergence</text>
+<line x1="328" y1="212" x2="957" y2="348" stroke="#b91c1c" stroke-width="2" stroke-dasharray="7,5" marker-end="url(#arrow-tension)"/>
+<rect x="463" y="262" width="359" height="20" rx="10" ry="10" fill="white" stroke="#b91c1c" stroke-width="1"/>
+<text x="642" y="276" text-anchor="middle" font-size="10.5" fill="#b91c1c" font-weight="600">reasoning models reopen compression-vs-capability</text>
+<rect x="60" y="110" width="350" height="180" rx="14" ry="14" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" filter="url(#card-shadow)"/>
+<path d="M60,124 a14,14 0 0 1 14,-14 h322 a14,14 0 0 1 14,14 v22 h-350 z" fill="url(#hdr-01)"/>
+<text x="74" y="134" font-size="13.5" font-weight="700" fill="#ffffff">01 — Compression-as-Intelligence</text>
+<text x="74" y="166" font-size="11" fill="#334155" font-style="italic">Capability ≈ linearly tracks bits-per-byte.</text>
+<text x="74" y="190" font-size="11.5" fill="#0f172a"><tspan font-size="13">🟢</tspan><tspan dx="6">LMs are lossless compressors of text</tspan></text>
+<text x="74" y="212" font-size="11.5" fill="#0f172a"><tspan font-size="13">🟡</tspan><tspan dx="6">bits-per-byte ≈ linear in benchmark</tspan></text>
+<text x="74" y="234" font-size="11.5" fill="#0f172a"><tspan font-size="13">⚪</tspan><tspan dx="6">Hutter / Solomonoff philosophical anchor</tspan></text>
+<rect x="60" y="320" width="350" height="180" rx="14" ry="14" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#card-shadow)"/>
+<path d="M60,334 a14,14 0 0 1 14,-14 h322 a14,14 0 0 1 14,14 v22 h-350 z" fill="url(#hdr-02)"/>
+<text x="74" y="344" font-size="13.5" font-weight="700" fill="#ffffff">02 — Superposition &amp; Linear Representations</text>
+<text x="74" y="376" font-size="11" fill="#334155" font-style="italic">Models pack n features into d&lt;n dims as linear directions.</text>
+<text x="74" y="400" font-size="11.5" fill="#0f172a"><tspan font-size="13">🟢</tspan><tspan dx="6">Trained nets pack n features into d&lt;n dims</tspan></text>
+<text x="74" y="422" font-size="11.5" fill="#0f172a"><tspan font-size="13">🟢</tspan><tspan dx="6">Features ≈ linear directions in activations</tspan></text>
+<text x="74" y="444" font-size="11.5" fill="#0f172a"><tspan font-size="13">⚪</tspan><tspan dx="6">Cross-family feature universality</tspan></text>
+<rect x="470" y="110" width="350" height="180" rx="14" ry="14" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5" filter="url(#card-shadow)"/>
+<path d="M470,124 a14,14 0 0 1 14,-14 h322 a14,14 0 0 1 14,14 v22 h-350 z" fill="url(#hdr-03)"/>
+<text x="484" y="134" font-size="13.5" font-weight="700" fill="#ffffff">03 — Circuits &amp; the Biology of LLMs</text>
+<text x="484" y="166" font-size="11" fill="#334155" font-style="italic">Small causally-validated sub-graphs implement behaviors.</text>
+<text x="484" y="190" font-size="11.5" fill="#0f172a"><tspan font-size="13">🟢</tspan><tspan dx="6">Induction heads (universal motif)</tspan></text>
+<text x="484" y="212" font-size="11.5" fill="#0f172a"><tspan font-size="13">🟢</tspan><tspan dx="6">IOI / circuit-discovery method</tspan></text>
+<text x="484" y="234" font-size="11.5" fill="#0f172a"><tspan font-size="13">⚪</tspan><tspan dx="6">Circuits explain OOD behavior</tspan></text>
+<rect x="470" y="320" width="350" height="180" rx="14" ry="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5" filter="url(#card-shadow)"/>
+<path d="M470,334 a14,14 0 0 1 14,-14 h322 a14,14 0 0 1 14,14 v22 h-350 z" fill="url(#hdr-04)"/>
+<text x="484" y="344" font-size="13.5" font-weight="700" fill="#ffffff">04 — ICL as Implicit Bayes / Meta-Learning</text>
+<text x="484" y="376" font-size="11" fill="#334155" font-style="italic">ICL ≈ Bayesian posterior over latent tasks.</text>
+<text x="484" y="400" font-size="11.5" fill="#0f172a"><tspan font-size="13">🟢</tspan><tspan dx="6">ICL tracks Bayes-optimal (toy data)</tspan></text>
+<text x="484" y="422" font-size="11.5" fill="#0f172a"><tspan font-size="13">🟢</tspan><tspan dx="6">ICL = portfolio of algorithms</tspan></text>
+<text x="484" y="444" font-size="11.5" fill="#0f172a"><tspan font-size="13">🔴</tspan><tspan dx="6">Bayes-invariant to surface form</tspan></text>
+<text x="484" y="466" font-size="11.5" fill="#0f172a"><tspan font-size="13">🔴</tspan><tspan dx="6">Asymptotic-Bayes equilibrium</tspan></text>
+<rect x="880" y="215" width="340" height="290" rx="14" ry="14" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" filter="url(#card-shadow)"/>
+<path d="M880,229 a14,14 0 0 1 14,-14 h312 a14,14 0 0 1 14,14 v22 h-340 z" fill="url(#hdr-05)"/>
+<text x="894" y="239" font-size="13.5" font-weight="700" fill="#ffffff">05 — Emergence &amp; Reasoning</text>
+<text x="894" y="271" font-size="11" fill="#334155" font-style="italic">Strong Wei-emergence 🔴; test-time-compute 🟡 alive.</text>
+<text x="894" y="295" font-size="11.5" fill="#0f172a"><tspan font-size="13">🔴</tspan><tspan dx="6">Strong (Wei) emergence</tspan></text>
+<text x="894" y="317" font-size="11.5" fill="#0f172a"><tspan font-size="13">🟢</tspan><tspan dx="6">Metric-artifact (Schaeffer)</tspan></text>
+<text x="894" y="339" font-size="11.5" fill="#0f172a"><tspan font-size="13">🟡</tspan><tspan dx="6">Test-time-compute scaling axis</tspan></text>
+<text x="894" y="361" font-size="11.5" fill="#0f172a"><tspan font-size="13">⚪</tspan><tspan dx="6">Strict complex-systems emergence</tspan></text>
+<text x="640" y="702" text-anchor="middle" font-size="11" fill="#94a3b8">Solid arrow = supports · Dashed red = in tension · 42 papers tracked · See README + tracker/falsification-events.md for the ledger</text>
 </svg>

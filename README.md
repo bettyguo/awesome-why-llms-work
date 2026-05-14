@@ -31,6 +31,7 @@ If you want a flat bibliography, see the [companion repos](#related-and-companio
 - [Reading paths](#reading-paths)
 - [Notebooks (run in <5 min on a free Colab T4)](#notebooks-run-in-5-min-on-a-free-colab-t4)
 - [Synthesis essays](#synthesis-essays)
+- [Papers index (flat)](#papers-index-flat)
 - [Falsification ledger summary](#falsification-ledger-summary)
 - [What's new](#whats-new)
 - [Adjacent programmes](#adjacent-programmes)
@@ -116,6 +117,14 @@ Programmes interact. The synthesis essays argue for specific relationships betwe
 - **[Circuits ⇔ ICL-as-Bayes](essays/circuits-and-icl-bayes.md)** — Bayesian and circuit-level explanations of ICL look incompatible at first glance. They are not; we argue they are the same explanation at different levels of abstraction, and we identify the specific places they make different predictions.
 - **[Emergence ⇔ Reasoning models](essays/emergence-vs-reasoning-models.md)** — what test-time-compute scaling (o1, R1, s1) does and does not tell us about emergence.
 - **[How to falsify an LLM theory](essays/how-to-falsify-an-llm-theory.md)** — methodological essay; addresses the strongest critiques of this repo and of the programme-map approach.
+
+---
+
+## Papers index (flat)
+
+If you came here asking "does this repo cite paper X?", the answer is in [`PAPERS.md`](PAPERS.md) — a generated flat table of every arXiv-cited paper, its programme assignment(s), and the files that cite it. 42 unique papers at the time of writing. Auto-regenerated from the per-programme files by [`scripts/generate_papers_index.py`](scripts/generate_papers_index.py); do not edit by hand.
+
+For *opinionated* navigation, use the programme files; the index is the orthogonal "is X cited?" lookup.
 
 ---
 

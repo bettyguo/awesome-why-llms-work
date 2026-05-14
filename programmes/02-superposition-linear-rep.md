@@ -83,6 +83,50 @@ Tools the programme has produced: SAELens, TransformerLens (shared with Programm
   - **Why it matters**: Pushed the field toward "feature-first" interpretability as opposed to "neuron-first" interpretability. After this, "is this neuron polysemantic?" stopped being a useful question; the right unit of analysis became the SAE feature.
   - **Falsifies**: strong neuron-monosemanticity hypotheses.
 
+### The 2024–2025 SAE wave (methods)
+
+The methodological literature on sparse autoencoders has matured rapidly. We track four papers as the canonical methods axis; each is a *recipe* the field uses today.
+
+- **Improving Dictionary Learning with Gated Sparse Autoencoders** (2024) — *Rajamanoharan, Conmy, Smith, Lieberum, Varma, Kramár, Shah, Nanda*. [arXiv:2404.16014](https://arxiv.org/abs/2404.16014).
+  - **Programme**: 02
+  - **Claim**: A "gated" SAE architecture separates the decision *which* features to activate from the decision of *how much*; this eliminates the shrinkage bias of vanilla L1-SAEs and Pareto-improves reconstruction-vs-sparsity.
+  - **Status**: 🟢 Supported
+  - **Why it matters**: One of the few SAE-architectural changes that the field broadly adopted within a year of publication. Sets a methods baseline against which subsequent variants are judged.
+  - **Falsifies**: vanilla-L1-SAE-is-fine readings.
+
+- **Jumping Ahead: Improving Reconstruction Fidelity with JumpReLU Sparse Autoencoders** (2024) — *Rajamanoharan, Lieberum, Sonnerat, Conmy, Varma, Kramár, Nanda*. [arXiv:2407.14435](https://arxiv.org/abs/2407.14435).
+  - **Programme**: 02
+  - **Claim**: A JumpReLU activation (a learnable threshold per feature) further improves the reconstruction-vs-sparsity Pareto frontier over gated SAEs while remaining a single-pass architecture.
+  - **Status**: 🟢 Supported
+  - **Why it matters**: The dominant SAE recipe at the time of writing for many evaluation benchmarks. Establishes that the SAE-architecture axis is *not* settled — methodological progress continues.
+
+- **Scaling and evaluating sparse autoencoders** (2024) — *Gao, Dupré la Tour, Tillman, Goh, Troll, Radford, Sutskever, Leike, Wu*. [arXiv:2406.04093](https://arxiv.org/abs/2406.04093).
+  - **Programme**: 02
+  - **Claim**: With careful training, top-K sparse autoencoders scale to 16M latents on GPT-4-class activations and obey predictable scaling laws in MSE-vs-features and MSE-vs-tokens. Proposes principled evaluation metrics (sparse probing, automated interpretability scoring).
+  - **Status**: 🟢 Supported
+  - **Why it matters**: The largest-scale SAE result published at the time. Operationalizes "feature richness as scaling law" — a non-trivial empirical regularity that future SAE work has to either match or explain.
+
+- **Sparse Feature Circuits: Discovering and Editing Interpretable Causal Graphs in Language Models** (2024 → ICLR 2025) — *Marks, Rager, Michaud, Belinkov, Bau, Mueller*. [arXiv:2403.19647](https://arxiv.org/abs/2403.19647).
+  - **Programme**: 02 (with strong cross-link to 03)
+  - **Claim**: Combining SAE features (programme 02) with circuit-discovery methods (programme 03) gives *feature-level* circuits — causal graphs where the nodes are features, not components. Demonstrated on subject-verb agreement and similar tasks; circuits are editable with predictable behavior change.
+  - **Status**: 🟢 Supported
+  - **Why it matters**: The methodological bridge between programmes 02 and 03 that the synthesis essay [`circuits-and-icl-bayes.md`](../essays/circuits-and-icl-bayes.md) anticipates. After this paper, "the circuit" can be specified at the feature level rather than only at the head-or-neuron level — a major increase in resolution.
+  - **Falsifies**: head-or-neuron-only readings of circuit analysis.
+
+### Empirical demonstrations of LRH on specific features
+
+- **The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets** (2024) — *Marks, Tegmark*. [arXiv:2310.06824](https://arxiv.org/abs/2310.06824).
+  - **Programme**: 02
+  - **Claim**: At sufficient scale, LLMs linearly represent the truth/falsehood of factual statements; the truth direction is causally implicated in the model's output and transfers across datasets.
+  - **Status**: 🟢 Supported (for the truthfulness case)
+  - **Why it matters**: Concrete cases of LRH on safety-relevant features. The truth direction is one of a small number of features that the field has *causally* validated and that has been productively used for inference-time control (cross-link with Li et al. 2023, programme 03).
+
+- **Do Llamas Work in English? On the Latent Language of Multilingual Transformers** (2024) — *Wendler, Veselovsky, Monea, West*. [arXiv:2402.10588](https://arxiv.org/abs/2402.10588).
+  - **Programme**: 02
+  - **Claim**: Multilingual LLaMA-family models perform intermediate reasoning in an "English-like" representational space regardless of the input/output language; the language switch is largely a final-layer projection.
+  - **Status**: 🟢 Supported (within scope of LLaMA family)
+  - **Why it matters**: A specific structural claim about *which features* dominate the residual stream's mid-layer geometry. Connects to the Platonic Representation Hypothesis (Adjacent programme): if models converge to a shared representation, an English-anchored one is the empirical guess for current multilingual LMs.
+
 ### Contested by
 
 - **Codebook Features: Sparse and Discrete Interpretability for Neural Networks** (2023) — *Tamkin, Taufeeque, Goodman*. [arXiv:2310.17230](https://arxiv.org/abs/2310.17230).
@@ -118,6 +162,9 @@ Tools the programme has produced: SAELens, TransformerLens (shared with Programm
 | 02-E | Linear representation is the *unique* useful description; non-linear alternatives are no better. | 🟡 Contested | Park, Choe, Veitch 2023 (in its scope) | Tamkin et al. 2023 (discrete codebooks); various non-linear-probe results |
 | 02-F | SAE features are *causally* (not just correlationally) what the model uses. | ⚪ Open | activation-steering successes | causal validation is per-feature and patchy |
 | 02-G | Polysemanticity is fully resolved at the feature level (i.e., SAE features are reliably monosemantic). | 🟡 Contested | Bricken et al. 2023 | follow-up "feature splitting" / "feature merging" papers show width-dependent polysemanticity remains |
+| 02-H | SAE methods improve predictably along a reconstruction-vs-sparsity Pareto frontier with architectural improvements (gated, JumpReLU, top-K). | 🟢 Supported | Rajamanoharan et al. (gated) 2024; Rajamanoharan et al. (JumpReLU) 2024; Gao et al. 2024 | n/a — robustly replicated |
+| 02-I | Number of recoverable features grows predictably with model and SAE scale (scaling laws). | 🟢 Supported | Gao et al. 2024 | scope: top-K SAEs on GPT-4-class activations |
+| 02-J | Specific safety-relevant attributes (truthfulness, language identity) are linearly represented. | 🟢 Supported | Marks & Tegmark 2024 (truth); Wendler et al. 2024 (language) | n/a in scope |
 
 ---
 

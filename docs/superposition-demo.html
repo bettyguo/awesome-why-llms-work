@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Superposition demo — Why do LLMs work?</title>
+  <meta name="description"
+        content="Interactive visualization of the toy model of superposition (Elhage et al. 2022): n features packed into d<n dimensions, as a function of feature sparsity." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div id="site-nav"></div>
+
+<section class="max-w-5xl mx-auto px-6 pt-12 pb-6">
+  <p class="text-xs uppercase tracking-widest text-emerald-600 dark:text-emerald-400 font-semibold mb-2">
+    Programme 02 · Superposition
+  </p>
+  <h1 class="text-4xl md:text-5xl font-extrabold mb-3">
+    See <i>n</i> features pack into <i>d=2</i> dimensions.
+  </h1>
+  <p class="text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
+    A live, in-browser reproduction of the Elhage-et-al-2022 toy model of
+    superposition: a tiny two-layer network trains on sparse synthetic features
+    with a bottleneck of <span class="font-mono">d=2</span>, and we watch the
+    bottleneck columns arrange themselves into regular-polygon configurations
+    as a function of sparsity. No install, no Python — just gradient descent in
+    your tab.
+  </p>
+</section>
+
+<section class="max-w-5xl mx-auto px-6 pb-16">
+  <div class="grid md:grid-cols-12 gap-6">
+
+    <!-- Controls -->
+    <div class="md:col-span-4 space-y-5 p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+      <div>
+        <label class="block text-xs uppercase tracking-wider text-slate-500 font-semibold mb-1">
+          Features <span class="text-slate-700 dark:text-slate-300">(n)</span>
+        </label>
+        <input id="ctl-n" type="range" min="3" max="9" step="1" value="6" class="w-full">
+        <div class="flex items-center justify-between text-xs text-slate-500">
+          <span>3</span><span id="val-n" class="font-mono font-semibold text-slate-700 dark:text-slate-300">6</span><span>9</span>
+        </div>
+      </div>
+      <div>
+        <label class="block text-xs uppercase tracking-wider text-slate-500 font-semibold mb-1">
+          Sparsity <span class="text-slate-700 dark:text-slate-300">(p)</span>
+        </label>
+        <input id="ctl-p" type="range" min="-3" max="-0.05" step="0.01" value="-1.7" class="w-full">
+        <div class="flex items-center justify-between text-xs text-slate-500">
+          <span>sparse</span><span id="val-p" class="font-mono font-semibold text-slate-700 dark:text-slate-300">p = 0.020</span><span>dense</span>
+        </div>
+      </div>
+      <div>
+        <label class="block text-xs uppercase tracking-wider text-slate-500 font-semibold mb-1">
+          Training steps
+        </label>
+        <input id="ctl-steps" type="range" min="200" max="3000" step="100" value="1500" class="w-full">
+        <div class="flex items-center justify-between text-xs text-slate-500">
+          <span>200</span><span id="val-steps" class="font-mono font-semibold text-slate-700 dark:text-slate-300">1500</span><span>3000</span>
+        </div>
+      </div>
+      <div class="flex gap-2 pt-2">
+        <button id="btn-train"
+                class="flex-1 px-4 py-2 rounded-md bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-semibold text-sm hover:opacity-90">
+          Retrain
+        </button>
+        <button id="btn-reset"
+                class="px-4 py-2 rounded-md border border-slate-300 dark:border-slate-700 text-sm">
+          Reset
+        </button>
+      </div>
+      <div class="text-xs text-slate-500 pt-3 border-t border-slate-200 dark:border-slate-700">
+        <p>
+          <span class="font-semibold text-slate-700 dark:text-slate-300">Loss:</span>
+          <span id="readout-loss" class="font-mono">—</span>
+        </p>
+        <p>
+          <span class="font-semibold text-slate-700 dark:text-slate-300">Step:</span>
+          <span id="readout-step" class="font-mono">0</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Canvas -->
+    <div class="md:col-span-8">
+      <div class="demo-canvas aspect-square w-full p-4 flex items-center justify-center">
+        <svg id="demo-svg" viewBox="-1.2 -1.2 2.4 2.4" class="w-full h-full"></svg>
+      </div>
+      <p class="text-xs text-slate-500 mt-3">
+        Each arrow is one column of the encoder W (one direction the model
+        uses to represent one feature). At <em>high sparsity</em> (slider left)
+        the model packs all <em>n</em> features into the <em>d=2</em> bottleneck
+        as a regular polygon. At <em>low sparsity</em> (slider right), it gives
+        up: only the top-2 features get represented, the rest collapse to zero.
+      </p>
+    </div>
+  </div>
+
+  <hr class="subtle" />
+
+  <div class="prose prose-slate dark:prose-invert max-w-none">
+    <h2 class="text-2xl font-bold mb-3">What you should see</h2>
+    <ul>
+      <li><b>p ≈ 0.5</b> (dense): only 2 directions remain non-zero — the model represents the 2 most-important features and drops the rest.</li>
+      <li><b>p ≈ 0.1</b> (moderate): about 3 directions in a triangle. The model superposes more features as redundancy goes down.</li>
+      <li><b>p ≈ 0.02</b> (very sparse): up to <i>n</i> directions in a regular polygon. The 2-D bottleneck packs all features.</li>
+    </ul>
+    <p>
+      The geometry — digon, triangle, square, pentagon, hexagon — is what
+      <a href="https://transformer-circuits.pub/2022/toy_model/index.html"
+         class="text-emerald-700 dark:text-emerald-400">
+        Elhage et al. (2022)
+      </a>
+      reported and analytically explained. The demo is a teaching artifact;
+      see <a href="../notebooks/02-toy-superposition.ipynb">notebook 02</a> for the
+      Python version and the
+      <a href="../programmes/02-superposition-linear-rep.md">programme 02 file</a>
+      for the full evidence ledger.
+    </p>
+    <h2 class="text-2xl font-bold mb-3 mt-8">What this does <i>not</i> show</h2>
+    <p>
+      A synthetic, i.i.d., Bernoulli-sparse task is the cleanest possible
+      setting for superposition. Real LMs face correlated features,
+      hierarchical structure, and orders of magnitude more features per
+      dimension. What survives at LM scale is the <em>phenomenon</em>
+      of overcomplete representation — not the specific polygon geometry.
+      The empirical evidence for that at LM scale is the SAE literature
+      (Cunningham et al. 2023; Bricken et al. 2023; Gao et al. 2024), not
+      this demo.
+    </p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="max-w-6xl mx-auto px-6">
+    Demo runs entirely client-side. Source:
+    <a class="underline" href="https://github.com/OWNER/awesome-why-llms-work/blob/main/docs/js/superposition.js">docs/js/superposition.js</a>.
+  </div>
+</footer>
+
+<script src="js/nav.js" defer></script>
+<script src="js/superposition.js" defer></script>
+</body>
+</html>

@@ -25,3 +25,14 @@ jobs:
           python scripts/verify_citations.py
           # NOTE: --strict is off so author/year warnings do not fail CI.
           # Missing arXiv IDs (hard failures) still block the build.
+
+      - name: Regenerate papers index and fail on drift
+        run: |
+          # The cache populated by verify_citations is reused here, so we make
+          # no extra API calls.
+          python scripts/generate_papers_index.py --out PAPERS.md
+          if ! git diff --quiet -- PAPERS.md; then
+            echo "::error::PAPERS.md is stale. Run 'python scripts/generate_papers_index.py' locally and commit the result."
+            git --no-pager diff -- PAPERS.md | head -200
+            exit 1
+          fi

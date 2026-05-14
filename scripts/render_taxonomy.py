@@ -17,8 +17,17 @@ Regenerate any time the taxonomy changes; commit both SVG and PNG.
 from __future__ import annotations
 
 import argparse
+import html
 import sys
 from pathlib import Path
+
+
+def x(s: str) -> str:
+    """XML-escape a string for safe embedding in SVG text/tspan nodes.
+
+    We use html.escape with quote=True to handle <, >, &, " and '.
+    """
+    return html.escape(s, quote=True)
 
 # Layout constants (svg coordinates).
 W, H = 1280, 720  # 16:9
@@ -48,7 +57,7 @@ NODES = [
     ("01", "bpb ≈ linear in benchmark", 18, 30, "🟡"),
     ("01", "LMs are lossless compressors", 18, 70, "🟢"),
     ("01", "Hutter / Solomonoff anchor", 18, 110, "⚪"),
-    ("02", "n features into d&lt;n dimensions", 18, 30, "🟢"),
+    ("02", "n features into d<n dimensions", 18, 30, "🟢"),
     ("02", "features ≈ linear directions", 18, 70, "🟢"),
     ("02", "cross-family universality", 18, 110, "⚪"),
     ("03", "induction heads (universal)", 18, 30, "🟢"),
@@ -85,25 +94,25 @@ def render_svg() -> str:
         f'</text>'
     )
     # programme boxes
-    for pid, (x, y, w, h) in PROGRAMME_BOX.items():
+    for pid, (bx, by, bw, bh) in PROGRAMME_BOX.items():
         color = PROGRAMME_COLOR[pid]
         title = PROGRAMME_TITLE[pid]
         lines.append(
-            f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="14" ry="14" '
+            f'<rect x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="14" ry="14" '
             f'fill="white" stroke="{color}" stroke-width="2.5"/>'
         )
         lines.append(
-            f'<text x="{x + 12}" y="{y + 22}" font-size="13" font-weight="700" fill="{color}">'
-            f'{title}'
+            f'<text x="{bx + 12}" y="{by + 22}" font-size="13" font-weight="700" fill="{color}">'
+            f'{x(title)}'
             f'</text>'
         )
     # node items
     for pid, label, dx, dy, status in NODES:
-        x, y, _, _ = PROGRAMME_BOX[pid]
-        nx, ny = x + dx, y + dy
+        bx, by, _, _ = PROGRAMME_BOX[pid]
+        nx, ny = bx + dx, by + dy
         lines.append(
             f'<text x="{nx}" y="{ny}" font-size="11" fill="#222">'
-            f'<tspan>{status}</tspan> {label}'
+            f'<tspan>{x(status)}</tspan> {x(label)}'
             f'</text>'
         )
     # arrow defs (filled triangles, distinct colors for supports / tension)
@@ -144,7 +153,7 @@ def render_svg() -> str:
         mx, my = (x1 + x2) // 2, (y1 + y2) // 2
         lines.append(
             f'<text x="{mx}" y="{my - 6}" text-anchor="middle" font-size="10" fill="{color}">'
-            f'{label}'
+            f'{x(label)}'
             f'</text>'
         )
     # legend

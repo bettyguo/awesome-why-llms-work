@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Falsification Ledger — Why do LLMs work?</title>
+  <meta name="description"
+        content="All 41 tracked claims across the five programmes, filterable by programme and status. The audit trail of what the field actually believes right now." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div id="site-nav"></div>
+
+<section class="max-w-6xl mx-auto px-6 pt-12 pb-6">
+  <p class="text-xs uppercase tracking-widest text-slate-500 font-semibold mb-2">
+    Falsification ledger
+  </p>
+  <h1 class="text-4xl md:text-5xl font-extrabold mb-3">
+    Every tracked claim, with status and falsifier.
+  </h1>
+  <p class="text-lg text-slate-600 dark:text-slate-400 max-w-3xl">
+    41 claims across the five programmes. Filter by programme and status; click
+    a row to expand the supporting and refuting citations. All status changes
+    must be backed by a cited paper —
+    <a class="underline decoration-dotted" href="https://github.com/OWNER/awesome-why-llms-work/blob/main/CONTRIBUTING.md#status-change-prs-the-most-important-contribution">
+      see CONTRIBUTING.md
+    </a>.
+  </p>
+</section>
+
+<!-- Filters -->
+<section class="max-w-6xl mx-auto px-6 pb-6">
+  <div class="flex flex-wrap gap-2 mb-3 items-center">
+    <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 mr-1">Programme</span>
+    <button class="filter-btn" data-filter="programme" data-value="all" data-active="true">All</button>
+    <button class="filter-btn" data-filter="programme" data-value="01">01 Compression</button>
+    <button class="filter-btn" data-filter="programme" data-value="02">02 Superposition</button>
+    <button class="filter-btn" data-filter="programme" data-value="03">03 Circuits</button>
+    <button class="filter-btn" data-filter="programme" data-value="04">04 ICL-Bayes</button>
+    <button class="filter-btn" data-filter="programme" data-value="05">05 Emergence</button>
+  </div>
+  <div class="flex flex-wrap gap-2 mb-4 items-center">
+    <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 mr-1">Status</span>
+    <button class="filter-btn" data-filter="status" data-value="all" data-active="true">All</button>
+    <button class="filter-btn" data-filter="status" data-value="supported">🟢 Supported</button>
+    <button class="filter-btn" data-filter="status" data-value="contested">🟡 Contested</button>
+    <button class="filter-btn" data-filter="status" data-value="refuted">🔴 Refuted</button>
+    <button class="filter-btn" data-filter="status" data-value="open">⚪ Open</button>
+  </div>
+  <div class="flex items-center gap-3">
+    <input id="ledger-search" type="search"
+           placeholder="Search claim text (e.g. 'induction', 'compression', 'Bayes')…"
+           class="w-full max-w-xl px-4 py-2 rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm" />
+    <span class="text-sm text-slate-500">
+      <span id="results-count" class="font-mono font-semibold">—</span>
+      of <span id="total-count" class="font-mono">—</span>
+    </span>
+  </div>
+</section>
+
+<!-- Table -->
+<section class="max-w-6xl mx-auto px-6 pb-16">
+  <div class="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
+    <table class="w-full text-sm">
+      <thead class="bg-slate-50 dark:bg-slate-800/50 text-left">
+        <tr>
+          <th class="px-4 py-3 font-semibold text-slate-700 dark:text-slate-300 w-24">Claim</th>
+          <th class="px-4 py-3 font-semibold text-slate-700 dark:text-slate-300">Text</th>
+          <th class="px-4 py-3 font-semibold text-slate-700 dark:text-slate-300 w-40">Status</th>
+        </tr>
+      </thead>
+      <tbody id="ledger-body" class="divide-y divide-slate-100 dark:divide-slate-800">
+        <!-- filled by ledger.js -->
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="max-w-6xl mx-auto px-6">
+    Status changes require a cited paper. Open a
+    <a class="underline" href="https://github.com/OWNER/awesome-why-llms-work/issues/new?template=status-change.md">
+      status-change issue
+    </a>.
+  </div>
+</footer>
+
+<script src="js/nav.js" defer></script>
+<script src="js/ledger.js" defer></script>
+</body>
+</html>

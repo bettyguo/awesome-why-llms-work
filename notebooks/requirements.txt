@@ -1,0 +1,16 @@
+# Pinned versions for notebook reproducibility.
+# Targets: Python 3.10+, free Colab T4 (CUDA 12).
+
+numpy==1.26.4
+torch==2.4.1
+transformers==4.45.2
+datasets==3.0.1
+matplotlib==3.9.2
+scikit-learn==1.5.2
+tqdm==4.66.5
+
+# For notebook 03 (induction-head discovery):
+transformer-lens==2.6.0
+
+# Optional: cleaner pretty-printing in some notebooks.
+rich==13.8.1

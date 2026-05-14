@@ -1,0 +1,382 @@
+{
+  "generated_at": "2026-05-14",
+  "programmes": [
+    {
+      "id": "01",
+      "title": "Compression-as-Intelligence",
+      "color": "#2563eb",
+      "file": "programmes/01-compression-as-intelligence.md",
+      "hard_core": "A model's average lossless-compression rate over a held-out text corpus is approximately linearly related to its average performance on broad downstream benchmarks, across model families and across multiple orders of magnitude of model scale.",
+      "claims": [
+        {
+          "id": "01-A",
+          "text": "LLMs achieve competitive lossless compression on text.",
+          "status": "🟢 Supported",
+          "status_label": "🟢 Supported",
+          "supporting": "Delétang et al. 2023",
+          "refuting": "none"
+        },
+        {
+          "id": "01-B",
+          "text": "LLMs achieve competitive lossless compression on non-text modalities (audio, images).",
+          "status": "🟢 Supported",
+          "status_label": "🟢 Supported",
+          "supporting": "Delétang et al. 2023 (in-paper image/audio experiments)",
+          "refuting": "none at scale"
+        },
+        {
+          "id": "01-C",
+          "text": "Compression performance linearly predicts benchmark performance within a model family.",
+          "status": "🟢 Supported",
+          "status_label": "🟢 Supported",
+          "supporting": "Huang et al. 2024",
+          "refuting": "none of comparable scale"
+        },
+        {
+          "id": "01-D",
+          "text": "Compression performance linearly predicts benchmark performance *across* model families, including reasoning-tuned models.",
+          "status": "🟡 Contested",
+          "status_label": "🟡 Contested",
+          "supporting": "Huang et al. 2024 (31 models)",
+          "refuting": "the strong form has not been re-tested on o1 / R1 / s1 cohorts at publication time; reasoning-tuned models are obvious risk cases"
+        },
+        {
+          "id": "01-E",
+          "text": "Improving compression is sufficient for improving downstream capability.",
+          "status": "⚪ Open",
+          "status_label": "⚪ Open",
+          "supporting": "n/a",
+          "refuting": "tool-using and reasoning-tuned models complicate the causal direction"
+        },
+        {
+          "id": "01-F",
+          "text": "Compression as Solomonoff induction is the *unique* explanation for LLM generality.",
+          "status": "⚪ Open (a strong claim with no clean empirical test yet)",
+          "status_label": "⚪ Open",
+          "supporting": "Hutter",
+          "refuting": "Huh et al.; Platonic Representation programme"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "title": "Superposition & Linear Representations",
+      "color": "#059669",
+      "file": "programmes/02-superposition-linear-rep.md",
+      "hard_core": "(A) Superposition.",
+      "claims": [
+        {
+          "id": "02-A",
+          "text": "Trained networks pack more features than they have neurons.",
+          "status": "🟢 Supported",
+          "status_label": "🟢 Supported",
+          "supporting": "Elhage et al. 2022 (toy); Bricken et al. 2023 (real)",
+          "refuting": "none at present"
+        },
+        {
+          "id": "02-B",
+          "text": "At least some features are linearly readable from activations.",
+          "status": "🟢 Supported",
+          "status_label": "🟢 Supported",
+          "supporting": "Park, Choe, Veitch 2023; broad probing literature",
+          "refuting": "trivially false in its strongest form (some features are clearly non-linear)"
+        },
+        {
+          "id": "02-C",
+          "text": "The features SAEs find are *interpretable*, not artifacts of SAE training.",
+          "status": "🟡 Contested",
+          "status_label": "🟡 Contested",
+          "supporting": "Bricken et al. 2023; Cunningham et al. 2023",
+          "refuting": "Kantamneni et al. 2025; concerns about SAE-dependent feature shape"
+        },
+        {
+          "id": "02-D",
+          "text": "Features are *universal*: the same features appear across model families and scales.",
+          "status": "⚪ Open",
+          "status_label": "⚪ Open",
+          "supporting": "partial: induction heads (Olsson et al.); shared monosemantic features in Bricken et al.",
+          "refuting": "no large-scale cross-family universality study yet at publication time"
+        },
+        {
+          "id": "02-E",
+          "text": "Linear representation is the *unique* useful description; non-linear alternatives are no better.",
+          "status": "🟡 Contested",
+          "status_label": "🟡 Contested",
+          "supporting": "Park, Choe, Veitch 2023 (in its scope)",
+          "refuting": "Tamkin et al. 2023 (discrete codebooks); various non-linear-probe results"
+        },
+        {
+          "id": "02-F",
+          "text": "SAE features are *causally* (not just correlationally) what the model uses.",
+          "status": "⚪ Open",
+          "status_label": "⚪ Open",
+          "supporting": "activation-steering successes",
+          "refuting": "causal validation is per-feature and patchy"
+        },
+        {
+          "id": "02-G",
+          "text": "Polysemanticity is fully resolved at the feature level (i.e., SAE features are reliably monosemantic).",
+          "status": "🟡 Contested",
+          "status_label": "🟡 Contested",
+          "supporting": "Bricken et al. 2023",
+          "refuting": "follow-up \"feature splitting\" / \"feature merging\" papers show width-dependent polysemanticity remains"
+        },
+        {
+          "id": "02-H",
+          "text": "SAE methods improve predictably along a reconstruction-vs-sparsity Pareto frontier with architectural improvements (gated, JumpReLU, top-K).",
+          "status": "🟢 Supported",
+          "status_label": "🟢 Supported",
+          "supporting": "Rajamanoharan et al. (gated) 2024; Rajamanoharan et al. (JumpReLU) 2024; Gao et al. 2024",
+          "refuting": "n/a — robustly replicated"
+        },
+        {
+          "id": "02-I",
+          "text": "Number of recoverable features grows predictably with model and SAE scale (scaling laws).",
+          "status": "🟢 Supported",
+          "status_label": "🟢 Supported",
+          "supporting": "Gao et al. 2024",
+          "refuting": "scope: top-K SAEs on GPT-4-class activations"
+        },
+        {
+          "id": "02-J",
+          "text": "Specific safety-relevant attributes (truthfulness, language identity) are linearly represented.",
+          "status": "🟢 Supported",
+          "status_label": "🟢 Supported",
+          "supporting": "Marks & Tegmark 2024 (truth); Wendler et al. 2024 (language)",
+          "refuting": "n/a in scope"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "title": "Circuits & the Biology of LLMs",
+      "color": "#dc2626",
+      "file": "programmes/03-circuits-and-biology.md",
+      "hard_core": "For a range of well-specified tasks, the model's behavior on the task is supported by a small, identifiable sub-graph of attention heads, MLP neurons (or SAE features), and edges between them; the sub-graph can be discovered by causal interventions (ablation, activation patching) and is reproducible across runs and, in many cases, across model families.",
+      "claims": [
+        {
+          "id": "03-A",
+          "text": "Specific narrow tasks (IOI, induction, modular addition) admit small, causally-validated circuits.",
+          "status": "🟢 Supported",
+          "status_label": "🟢 Supported",
+          "supporting": "Wang et al. 2022; Olsson et al. 2022; Nanda et al. 2023",
+          "refuting": "none"
+        },
+        {
+          "id": "03-B",
+          "text": "Circuit discovery can be (semi-)automated.",
+          "status": "🟢 Supported",
+          "status_label": "🟢 Supported",
+          "supporting": "Conmy et al. 2023 and follow-ups",
+          "refuting": "scaling-to-frontier-model concerns"
+        },
+        {
+          "id": "03-C",
+          "text": "Circuit motifs are universal across model families.",
+          "status": "🟡 Contested",
+          "status_label": "🟡 Contested",
+          "supporting": "induction heads (Olsson et al.)",
+          "refuting": "universality of less-canonical motifs is weak; few cross-family replications at scale"
+        },
+        {
+          "id": "03-D",
+          "text": "\"Circuits\" generalize to *general* model behavior, not only narrow tasks.",
+          "status": "⚪ Open",
+          "status_label": "⚪ Open",
+          "supporting": "Anthropic biology-of-LLM work attempts this; community-survey (Sharkey et al. 2025) marks it open",
+          "refuting": "this is the hard version of the claim"
+        },
+        {
+          "id": "03-E",
+          "text": "Faithfulness metrics for circuits are well-calibrated.",
+          "status": "🟡 Contested",
+          "status_label": "🟡 Contested",
+          "supporting": "progress in standard methodology",
+          "refuting": "Hanna et al. 2024 — many published circuits are over-credited under stricter metrics"
+        },
+        {
+          "id": "03-F",
+          "text": "Some behaviors are mediated by a *single direction* rather than a multi-component circuit.",
+          "status": "🟢 Supported (where claimed)",
+          "status_label": "🟢 Supported",
+          "supporting": "Arditi et al. 2024 (refusal)",
+          "refuting": "sharpens but does not refute 03-A"
+        },
+        {
+          "id": "03-G",
+          "text": "Circuits *explain* (vs. merely describe) model behavior on out-of-distribution inputs.",
+          "status": "⚪ Open",
+          "status_label": "⚪ Open",
+          "supporting": "partial: predicting behavior after ablation",
+          "refuting": "a serious OOD-behavior prediction benchmark for circuits does not yet exist"
+        },
+        {
+          "id": "03-H",
+          "text": "Circuit analyses on small models transfer to larger / longer-trained models.",
+          "status": "🟢 Supported",
+          "status_label": "🟢 Supported",
+          "supporting": "Tigges et al. 2024 (Pythia family)",
+          "refuting": "cross-family transfer still partial"
+        },
+        {
+          "id": "03-I",
+          "text": "Feature-level circuits are extractable and editable at frontier scale.",
+          "status": "🟡 Contested",
+          "status_label": "🟡 Contested",
+          "supporting": "Marks et al. 2025; Anthropic *Circuit Tracing* 2025",
+          "refuting": "independent replication of frontier-scale attribution graphs pending"
+        },
+        {
+          "id": "03-J",
+          "text": "Single residual-stream directions can mediate complex behaviors (refusal, truthfulness).",
+          "status": "🟢 Supported",
+          "status_label": "🟢 Supported",
+          "supporting": "Arditi et al. 2024; Li et al. 2023",
+          "refuting": "scope: safety-relevant attributes — not yet shown for arbitrary tasks"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "title": "ICL as Implicit Bayes / Meta-Learning",
+      "color": "#7c3aed",
+      "file": "programmes/04-icl-as-bayes-meta-learning.md",
+      "hard_core": "Pretraining on data with latent-task structure makes the transformer behave, at inference time, as if it were doing posterior inference over the latent-task variable. As context grows, the model's predictions track the Bayes-optimal predictor under the implicit prior defined by the pretraining distribution.",
+      "claims": [
+        {
+          "id": "04-A",
+          "text": "On synthetic mixture-of-HMM data, ICL tracks Bayes-optimal prediction as context grows.",
+          "status": "🟢 Supported",
+          "status_label": "🟢 Supported",
+          "supporting": "Xie et al. 2022 (GINC)",
+          "refuting": "none in scope"
+        },
+        {
+          "id": "04-B",
+          "text": "For linear ICL tasks, transformers implement gradient descent / ridge regression / Bayesian inference.",
+          "status": "🟢 Supported (in scope)",
+          "status_label": "🟢 Supported",
+          "supporting": "Akyürek et al.; Garg et al.; von Oswald et al.",
+          "refuting": "beyond the in-scope tasks the claim is open"
+        },
+        {
+          "id": "04-C",
+          "text": "Transformers select among multiple in-context algorithms based on context.",
+          "status": "🟢 Supported (theoretical)",
+          "status_label": "🟢 Supported",
+          "supporting": "Bai et al. 2023",
+          "refuting": "empirical breadth is open"
+        },
+        {
+          "id": "04-D",
+          "text": "ICL on natural language closely tracks Bayes-optimal predictions.",
+          "status": "🟡 Contested",
+          "status_label": "🟡 Contested",
+          "supporting": "Panwar et al. 2023 (most tasks)",
+          "refuting": "systematic deviations on rare/OOD tasks"
+        },
+        {
+          "id": "04-E",
+          "text": "ICL is the asymptotic equilibrium of next-token training on task-mixed data.",
+          "status": "🔴 Refuted (as a strict asymptotic claim)",
+          "status_label": "🔴 Refuted",
+          "supporting": "n/a",
+          "refuting": "Singh et al. 2023 — ICL can be transient; in-weights learning supplants it"
+        },
+        {
+          "id": "04-F",
+          "text": "The mechanistic implementation of ICL is captured by induction heads / similar circuits (cross-link to 03).",
+          "status": "🟡 Contested",
+          "status_label": "🟡 Contested",
+          "supporting": "Olsson et al. 2022; task-vector work",
+          "refuting": "induction heads explain part, not all, of ICL on natural text"
+        },
+        {
+          "id": "04-G",
+          "text": "ICL behavior is Bayes-invariant to surface-form changes in the prompt.",
+          "status": "🔴 Refuted (in its strict form)",
+          "status_label": "🔴 Refuted",
+          "supporting": "n/a",
+          "refuting": "Min et al. 2022 — random-label demonstrations work; surface-form sensitivities are pervasive"
+        },
+        {
+          "id": "04-H",
+          "text": "ICL is implemented (in part) via compression of demonstrations into a residual-stream task vector.",
+          "status": "🟢 Supported (within scope)",
+          "status_label": "🟢 Supported",
+          "supporting": "Hendel et al. 2023; Todd et al. 2023",
+          "refuting": "scope: single-task ICL setups"
+        },
+        {
+          "id": "04-I",
+          "text": "For relational tasks, LMs implement word2vec-style additive vector arithmetic.",
+          "status": "🟢 Supported (within scope)",
+          "status_label": "🟢 Supported",
+          "supporting": "Merullo et al. 2023",
+          "refuting": "scope: relational tasks specifically"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "title": "Emergence and Reasoning",
+      "color": "#ea580c",
+      "file": "programmes/05-emergence-and-reasoning.md",
+      "hard_core": "for some downstream tasks, model performance is approximately at chance until a critical scale of model parameters or training compute, after which it improves sharply; this discontinuity is not predictable from smaller-scale runs under any continuous metric.",
+      "claims": [
+        {
+          "id": "05-A",
+          "text": "Wei-style strong emergence: capability is genuinely zero below scale $S^*$ and positive above, *unpredictably* from smaller runs.",
+          "status": "🔴 Refuted",
+          "status_label": "🔴 Refuted",
+          "supporting": "Wei et al. 2022",
+          "refuting": "Schaeffer et al. 2023 (metric-substitution refutation)"
+        },
+        {
+          "id": "05-B",
+          "text": "Under common (multi-choice / exact-match) metrics, some capability curves *are* sharp as a function of scale.",
+          "status": "🟢 Supported (descriptive)",
+          "status_label": "🟢 Supported",
+          "supporting": "Wei et al. 2022; many follow-ups",
+          "refuting": "not contested as description; only as interpretation"
+        },
+        {
+          "id": "05-C",
+          "text": "Training-time grokking phase changes have continuous internal causes (mechanistically explainable).",
+          "status": "🟢 Supported",
+          "status_label": "🟢 Supported",
+          "supporting": "Nanda et al. 2023; Olsson et al. 2022",
+          "refuting": "n/a"
+        },
+        {
+          "id": "05-D",
+          "text": "Test-time compute scaling produces capability gains that look discontinuous in *capability-per-prompt* but continuous in *compute-per-prompt*.",
+          "status": "🟡 Contested",
+          "status_label": "🟡 Contested",
+          "supporting": "Snell et al. 2024; OpenAI o1; DeepSeek-R1; s1",
+          "refuting": "exact magnitude and task-coverage debated"
+        },
+        {
+          "id": "05-E",
+          "text": "\"Emergence\" in the strict complex-systems sense (order parameter discontinuities) is a real phenomenon in LLMs.",
+          "status": "⚪ Open",
+          "status_label": "⚪ Open",
+          "supporting": "Krakauer, Krakauer, Mitchell 2025 — *poses* the question",
+          "refuting": "no clean order-parameter result yet"
+        },
+        {
+          "id": "05-F",
+          "text": "Reasoning capability can be elicited by small post-training datasets + inference-time control.",
+          "status": "🟢 Supported",
+          "status_label": "🟢 Supported",
+          "supporting": "DeepSeek-R1; s1",
+          "refuting": "n/a in the cited scope"
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "programmes": 5,
+    "claims": 41
+  }
+}

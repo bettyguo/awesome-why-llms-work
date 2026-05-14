@@ -89,6 +89,44 @@ Tools the programme has produced or relies on: TransformerLens, SAELens, circuit
   - **Why it matters**: Demonstrates the circuit framework's reach: complete mechanistic explanation of a non-trivial behavior, and that explanation makes *predictions* about generalization dynamics that pure-loss curves cannot make.
   - **Falsifies**: the strongest forms of "we cannot know what neural networks do internally"; also, in conjunction with Power et al. 2022, *Programme 05*'s strong-emergence claim — the grokking transition has a mechanistic cause.
 
+### Attribution graphs and the 2025 "biology of an LLM" wave
+
+- **Circuit Tracing: Revealing Computational Graphs in Language Models** (2025) — *Anthropic interpretability team* (Lindsey et al., ≥ 20 authors). [transformer-circuits.pub](https://transformer-circuits.pub/2025/attribution-graphs/methods.html).
+  - **Programme**: 03
+  - **Claim**: A methodology for constructing *attribution graphs* — graphs that describe how features (cross-link with programme 02) interact through replacement-model computations — at frontier-model scale; circuits at this resolution can be drawn for non-trivial behaviors (multi-hop factual questions, chain-of-thought reasoning, refusal).
+  - **Status**: 🟢 Supported (the methodology is demonstrated; cross-organization independent replications still pending)
+  - **Why it matters**: The largest-scale circuit work to date. Pushes the programme from "small models, narrow tasks" toward "frontier models, real behaviors." A genuine state-of-the-art shift; the *Sparse Feature Circuits* line (programme 02 cross-link) and this line are complementary.
+
+- **Sparse Feature Circuits: Discovering and Editing Interpretable Causal Graphs in Language Models** (2024 → ICLR 2025) — *Marks, Rager, Michaud, Belinkov, Bau, Mueller*. [arXiv:2403.19647](https://arxiv.org/abs/2403.19647). (Primary entry in [programme 02](02-superposition-linear-rep.md); listed here as a cross-reference because it is a circuit paper as much as a feature paper.)
+  - **Programme**: 02 + 03
+  - **Claim**: Same as above — feature-level causal graphs are an extractable, editable artifact.
+  - **Status**: 🟢 Supported
+  - **Why it matters**: A worked example of programmes 02 and 03 converging methodologically.
+
+### Universality and training-time replication
+
+- **LLM Circuit Analyses Are Consistent Across Training and Scale** (2024) — *Tigges, Hanna, Yu, Biderman*. [arXiv:2407.10827](https://arxiv.org/abs/2407.10827).
+  - **Programme**: 03
+  - **Claim**: Mechanisms (operationalized as circuits) on a fixed task emerge at similar token counts across model sizes from 70M to 2.8B, and persist across training even as the specific components implementing them rotate. Implication: circuit analyses at the end of small-model pretraining transfer to larger and longer-trained models.
+  - **Status**: 🟢 Supported (within Pythia-family scope)
+  - **Why it matters**: A direct empirical attack on the "circuits are tiny-model artifacts" criticism. Cross-checks programme 03's universality sub-claim *across training time*, not just across families.
+
+### Steering as causal validation of features
+
+Activation-steering / representation-engineering work cross-validates LRH (programme 02) by *intervening* on the residual stream — when steering works, the intervened direction is causally implicated in the model's behavior. We cite two examples; both connect 02-style representational claims to 03-style causal validation.
+
+- **Inference-Time Intervention: Eliciting Truthful Answers from a Language Model** (2023) — *Li, Patel, Viégas, Pfister, Wattenberg*. [arXiv:2306.03341](https://arxiv.org/abs/2306.03341) (NeurIPS 2023 spotlight).
+  - **Programme**: 03 (with strong cross-link to 02)
+  - **Claim**: Shifting activations along directions computed from a small probe set (across a limited number of attention heads) at inference time substantially improves truthfulness on TruthfulQA without retraining.
+  - **Status**: 🟢 Supported
+  - **Why it matters**: Establishes that *narrow* causal-direction interventions can produce *broad* behavioral effects, supporting an LRH-flavored picture of how safety-relevant attributes are stored.
+
+- **Representation Engineering: A Top-Down Approach to AI Transparency** (2023) — *Zou, Phan, Chen, Campbell, Guo, Ren, Pan, Yin, Mazeika, Dombrowski, Goel, Li, Byun, Wang, Mallen, Basart, Koyejo, Song, Fredrikson, Kolter, Hendrycks*. [arXiv:2310.01405](https://arxiv.org/abs/2310.01405).
+  - **Programme**: 03 (with strong cross-link to 02)
+  - **Claim**: A "top-down" framework that uses population-level representation analyses (PCA/affine of paired stimuli) to discover and intervene on high-level cognitive features — honesty, power-seeking, harmlessness — across many models.
+  - **Status**: 🟡 Contested (the method works empirically; whether "RepE" is a distinct methodology from steering-vectors-by-other-names is debated)
+  - **Why it matters**: Argues that a *top-down* approach to interpretability (start from a high-level concept, find its representation, intervene) is a productive complement to the *bottom-up* (start from components, build up the circuit) approach this programme has historically emphasized. Forces the programme to engage with its scope.
+
 ### Contested by
 
 - **Refusal in Language Models Is Mediated by a Single Direction** (2024) — *Arditi, Obeso, Syed, Paleka, Panickssery, Gurnee, Nanda*. [arXiv:2406.11717](https://arxiv.org/abs/2406.11717).
@@ -124,6 +162,9 @@ Tools the programme has produced or relies on: TransformerLens, SAELens, circuit
 | 03-E | Faithfulness metrics for circuits are well-calibrated. | 🟡 Contested | progress in standard methodology | Hanna et al. 2024 — many published circuits are over-credited under stricter metrics |
 | 03-F | Some behaviors are mediated by a *single direction* rather than a multi-component circuit. | 🟢 Supported (where claimed) | Arditi et al. 2024 (refusal) | sharpens but does not refute 03-A |
 | 03-G | Circuits *explain* (vs. merely describe) model behavior on out-of-distribution inputs. | ⚪ Open | partial: predicting behavior after ablation | a serious OOD-behavior prediction benchmark for circuits does not yet exist |
+| 03-H | Circuit analyses on small models transfer to larger / longer-trained models. | 🟢 Supported | Tigges et al. 2024 (Pythia family) | cross-family transfer still partial |
+| 03-I | Feature-level circuits are extractable and editable at frontier scale. | 🟡 Contested | Marks et al. 2025; Anthropic *Circuit Tracing* 2025 | independent replication of frontier-scale attribution graphs pending |
+| 03-J | Single residual-stream directions can mediate complex behaviors (refusal, truthfulness). | 🟢 Supported | Arditi et al. 2024; Li et al. 2023 | scope: safety-relevant attributes — not yet shown for arbitrary tasks |
 
 ---
 

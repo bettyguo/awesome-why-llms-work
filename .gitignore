@@ -57,3 +57,6 @@ secrets.*
 # Large auto-generated data
 data/raw/
 data/processed/
+
+# Script caches
+.cache/

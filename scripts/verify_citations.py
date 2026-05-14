@@ -21,6 +21,7 @@ This script is designed to run in CI. It is conservative about what it flags:
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import sys
 import time
@@ -31,7 +32,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 
-ARXIV_API = "http://export.arxiv.org/api/query?id_list={ids}"
+ARXIV_API = "https://export.arxiv.org/api/query?id_list={ids}"
+CACHE_PATH = Path(".cache/arxiv-verify.json")
 ARXIV_LINK_RE = re.compile(r"https?://arxiv\.org/abs/(?P<id>[0-9]{4}\.[0-9]{4,5})")
 
 DEFAULT_SCAN_ROOTS = [
@@ -71,17 +73,45 @@ def find_citations(paths: Iterable[Path]) -> list[Citation]:
     return out
 
 
-def fetch_arxiv(ids: list[str]) -> dict[str, dict]:
+def load_cache() -> dict[str, dict]:
+    if CACHE_PATH.exists():
+        try:
+            return json.loads(CACHE_PATH.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            return {}
+    return {}
+
+
+def save_cache(cache: dict[str, dict]) -> None:
+    CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    CACHE_PATH.write_text(json.dumps(cache, sort_keys=True, indent=2), encoding="utf-8")
+
+
+def fetch_arxiv(ids: list[str], use_cache: bool = True) -> dict[str, dict]:
     """Returns a dict id -> {title, authors, year} for valid IDs. Missing IDs
-    are simply absent from the result. Batches 10 at a time with retry."""
-    by_id: dict[str, dict] = {}
-    if not ids:
+    are simply absent from the result. Batches 5 at a time with retry.
+
+    If use_cache: results are persisted to .cache/arxiv-verify.json and
+    successive runs reuse them; only IDs not in the cache are re-fetched.
+    This makes the script robust to local arXiv-API rate limiting (where
+    multiple runs build up the cache) without sacrificing freshness in CI
+    (where CI environments have a clean network and tend to succeed in one
+    shot).
+    """
+    cache = load_cache() if use_cache else {}
+    by_id: dict[str, dict] = {aid: meta for aid, meta in cache.items() if aid in ids}
+    todo = [aid for aid in ids if aid not in by_id]
+    if not todo:
         return by_id
     BATCH = 5
     headers = {"User-Agent": "awesome-why-llms-work/1.0 (citation-verify; +https://arxiv.org/help/api)"}
-    print(f"  querying arXiv API for {len(ids)} unique IDs in batches of {BATCH} ...", file=sys.stderr)
-    for i in range(0, len(ids), BATCH):
-        batch = ids[i : i + BATCH]
+    print(
+        f"  querying arXiv API for {len(todo)} uncached IDs (of {len(ids)} total) "
+        f"in batches of {BATCH} ...",
+        file=sys.stderr,
+    )
+    for i in range(0, len(todo), BATCH):
+        batch = todo[i : i + BATCH]
         url = ARXIV_API.format(ids=",".join(batch))
         xml = None
         for attempt in range(4):
@@ -121,6 +151,12 @@ def fetch_arxiv(ids: list[str]) -> dict[str, dict]:
                 "year": (pub_el.text or "")[:4] if pub_el is not None else "",
             }
         time.sleep(3.0)  # be polite to the arXiv API
+    if use_cache:
+        # Persist the union of prior cache + new fetches. This way successive
+        # local runs accumulate verified IDs even if the arXiv API rate-limits
+        # any single run.
+        merged = {**cache, **by_id}
+        save_cache(merged)
     return by_id
 
 
@@ -149,6 +185,11 @@ def main() -> int:
         default=None,
         help="Optional file or directory paths to scan. Default: repo defaults.",
     )
+    parser.add_argument(
+        "--no-cache",
+        action="store_true",
+        help="Ignore the .cache/arxiv-verify.json cache. Fetch every ID fresh.",
+    )
     args = parser.parse_args()
 
     if args.paths:
@@ -163,7 +204,7 @@ def main() -> int:
 
     unique_ids = sorted({c.arxiv_id for c in citations})
     print(f"found {len(citations)} citations referencing {len(unique_ids)} unique arXiv IDs")
-    metadata = fetch_arxiv(unique_ids)
+    metadata = fetch_arxiv(unique_ids, use_cache=not args.no_cache)
 
     hard_failures = 0
     soft_failures = 0

@@ -45,29 +45,19 @@ jobs:
 
       - name: Assemble site root
         run: |
-          # Pages serves from a single directory; we copy the top-level
-          # assets used by the docs/ HTML into a build/ dir alongside docs/.
-          mkdir -p build
-          cp -r docs/. build/
-          # The HTML uses ../taxonomy.svg and ../hero.png — flatten:
-          cp taxonomy.svg build/taxonomy.svg
-          cp taxonomy.png build/taxonomy.png 2>/dev/null || true
-          cp hero.svg build/hero.svg
-          cp hero.png build/hero.png 2>/dev/null || true
-          # Notebook links go to GitHub; nothing else to copy here.
-          # The image src paths in docs/*.html use ../taxonomy.svg etc., which
-          # resolve to build/taxonomy.svg one level up when served from build/.
-          # That's wrong for a flat root — patch in place:
-          find build -name "*.html" -print0 | xargs -0 sed -i \
-            -e 's|src="\.\./taxonomy\.svg"|src="taxonomy.svg"|g' \
-            -e 's|src="\.\./taxonomy\.png"|src="taxonomy.png"|g' \
-            -e 's|src="\.\./hero\.svg"|src="hero.svg"|g' \
-            -e 's|content="\.\./hero\.png"|content="hero.png"|g'
+          # docs/ is already self-contained (it holds its own copies of
+          # hero.* and taxonomy.*). We refresh those copies with the
+          # just-regenerated SVGs so the deploy is always current, then
+          # publish docs/ directly.
+          cp taxonomy.svg docs/taxonomy.svg
+          cp taxonomy.png docs/taxonomy.png 2>/dev/null || true
+          cp hero.svg     docs/hero.svg
+          cp hero.png     docs/hero.png     2>/dev/null || true
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build
+          path: docs
 
   deploy:
     needs: build

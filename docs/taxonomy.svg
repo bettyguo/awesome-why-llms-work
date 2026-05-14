@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" font-family="Inter, ui-sans-serif, system-ui, sans-serif">
+<defs>
+<linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#f9fafb"/></linearGradient>
+<linearGradient id="hdr-01" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%"   stop-color="#2563eb" stop-opacity="0.95"/><stop offset="100%" stop-color="#2563eb" stop-opacity="0.75"/></linearGradient>
+<linearGradient id="hdr-02" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%"   stop-color="#059669" stop-opacity="0.95"/><stop offset="100%" stop-color="#059669" stop-opacity="0.75"/></linearGradient>
+<linearGradient id="hdr-03" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%"   stop-color="#dc2626" stop-opacity="0.95"/><stop offset="100%" stop-color="#dc2626" stop-opacity="0.75"/></linearGradient>
+<linearGradient id="hdr-04" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%"   stop-color="#7c3aed" stop-opacity="0.95"/><stop offset="100%" stop-color="#7c3aed" stop-opacity="0.75"/></linearGradient>
+<linearGradient id="hdr-05" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%"   stop-color="#ea580c" stop-opacity="0.95"/><stop offset="100%" stop-color="#ea580c" stop-opacity="0.75"/></linearGradient>
+<filter id="card-shadow" x="-10%" y="-10%" width="120%" height="130%"><feGaussianBlur in="SourceAlpha" stdDeviation="4"/><feOffset dx="0" dy="2" result="off"/><feComponentTransfer><feFuncA type="linear" slope="0.18"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<marker id="arrow-supports" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/></marker><marker id="arrow-tension" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#b91c1c"/></marker>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/>
+<text x="800" y="44" text-anchor="middle" font-size="30" font-weight="800" fill="#0f172a">Why LLMs Work — the Five Programmes Map</text>
+<text x="800" y="74" text-anchor="middle" font-size="15" font-weight="400" fill="#475569">A falsifiable-hypothesis atlas of why large language models actually work.</text>
+<line x1="260" y1="408" x2="260" y2="492" stroke="#475569" stroke-width="2"  marker-end="url(#arrow-supports)"/>
+<rect x="187" y="438" width="147" height="22" rx="11" ry="11" fill="white" stroke="#475569" stroke-width="1"/>
+<text x="260" y="454" text-anchor="middle" font-size="12" fill="#475569" font-weight="600">implies mechanism</text>
+<line x1="432" y1="495" x2="557" y2="404" stroke="#475569" stroke-width="2"  marker-end="url(#arrow-supports)"/>
+<rect x="413" y="437" width="162" height="22" rx="11" ry="11" fill="white" stroke="#475569" stroke-width="1"/>
+<text x="494" y="453" text-anchor="middle" font-size="12" fill="#475569" font-weight="600">features → circuits</text>
+<line x1="730" y1="408" x2="730" y2="492" stroke="#475569" stroke-width="2"  marker-end="url(#arrow-supports)"/>
+<rect x="664" y="438" width="132" height="22" rx="11" ry="11" fill="white" stroke="#475569" stroke-width="1"/>
+<text x="730" y="454" text-anchor="middle" font-size="12" fill="#475569" font-weight="600">induction ↔ ICL</text>
+<line x1="937" y1="563" x2="1152" y2="504" stroke="#b91c1c" stroke-width="2" stroke-dasharray="7,5" marker-end="url(#arrow-tension)"/>
+<rect x="956" y="521" width="177" height="22" rx="11" ry="11" fill="white" stroke="#b91c1c" stroke-width="1"/>
+<text x="1044" y="537" text-anchor="middle" font-size="12" fill="#b91c1c" font-weight="600">transient ↔ emergence</text>
+<path d="M 260 152 C 260 60 1350 60 1350 302" fill="none" stroke="#b91c1c" stroke-width="2" stroke-dasharray="7,5" marker-end="url(#arrow-tension)"/>
+<rect x="709" y="89" width="192" height="22" rx="11" ry="11" fill="white" stroke="#b91c1c" stroke-width="1"/>
+<text x="805" y="105" text-anchor="middle" font-size="12" fill="#b91c1c" font-weight="600">reasoning ↔ compression</text>
+<rect x="60" y="160" width="400" height="240" rx="14" ry="14" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" filter="url(#card-shadow)"/>
+<path d="M60,174 a14,14 0 0 1 14,-14 h372 a14,14 0 0 1 14,14 v26 h-400 z" fill="url(#hdr-01)"/>
+<text x="76" y="186" font-size="15" font-weight="700" fill="#ffffff">01 — Compression-as-Intelligence</text>
+<text x="76" y="222" font-size="12.5" fill="#334155" font-style="italic">Capability ≈ linearly tracks bits-per-byte.</text>
+<circle cx="82" cy="248" r="6" fill="#16a34a" stroke="#16a34a" stroke-width="1.5"/>
+<text x="96" y="252" font-size="13" fill="#0f172a">LMs are lossless compressors of text</text>
+<circle cx="82" cy="274" r="6" fill="#eab308" stroke="#eab308" stroke-width="1.5"/>
+<text x="96" y="278" font-size="13" fill="#0f172a">bits-per-byte ≈ linear in benchmark</text>
+<circle cx="82" cy="300" r="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="96" y="304" font-size="13" fill="#0f172a">Hutter / Solomonoff anchor</text>
+<rect x="60" y="500" width="400" height="240" rx="14" ry="14" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" filter="url(#card-shadow)"/>
+<path d="M60,514 a14,14 0 0 1 14,-14 h372 a14,14 0 0 1 14,14 v26 h-400 z" fill="url(#hdr-02)"/>
+<text x="76" y="526" font-size="15" font-weight="700" fill="#ffffff">02 — Superposition &amp; Linear Representations</text>
+<text x="76" y="562" font-size="12.5" fill="#334155" font-style="italic">Models pack n features into d&lt;n dims as linear directions.</text>
+<circle cx="82" cy="588" r="6" fill="#16a34a" stroke="#16a34a" stroke-width="1.5"/>
+<text x="96" y="592" font-size="13" fill="#0f172a">Trained nets pack n features into d&lt;n dims</text>
+<circle cx="82" cy="614" r="6" fill="#16a34a" stroke="#16a34a" stroke-width="1.5"/>
+<text x="96" y="618" font-size="13" fill="#0f172a">Features ≈ linear directions in activations</text>
+<circle cx="82" cy="640" r="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="96" y="644" font-size="13" fill="#0f172a">Cross-family feature universality</text>
+<rect x="530" y="160" width="400" height="240" rx="14" ry="14" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5" filter="url(#card-shadow)"/>
+<path d="M530,174 a14,14 0 0 1 14,-14 h372 a14,14 0 0 1 14,14 v26 h-400 z" fill="url(#hdr-03)"/>
+<text x="546" y="186" font-size="15" font-weight="700" fill="#ffffff">03 — Circuits &amp; the Biology of LLMs</text>
+<text x="546" y="222" font-size="12.5" fill="#334155" font-style="italic">Small causally-validated sub-graphs implement behaviors.</text>
+<circle cx="552" cy="248" r="6" fill="#16a34a" stroke="#16a34a" stroke-width="1.5"/>
+<text x="566" y="252" font-size="13" fill="#0f172a">Induction heads (universal motif)</text>
+<circle cx="552" cy="274" r="6" fill="#16a34a" stroke="#16a34a" stroke-width="1.5"/>
+<text x="566" y="278" font-size="13" fill="#0f172a">IOI / circuit-discovery method</text>
+<circle cx="552" cy="300" r="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="566" y="304" font-size="13" fill="#0f172a">Circuits explain OOD behavior</text>
+<rect x="530" y="500" width="400" height="240" rx="14" ry="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5" filter="url(#card-shadow)"/>
+<path d="M530,514 a14,14 0 0 1 14,-14 h372 a14,14 0 0 1 14,14 v26 h-400 z" fill="url(#hdr-04)"/>
+<text x="546" y="526" font-size="15" font-weight="700" fill="#ffffff">04 — ICL as Implicit Bayes / Meta-Learning</text>
+<text x="546" y="562" font-size="12.5" fill="#334155" font-style="italic">ICL ≈ Bayesian posterior over latent tasks.</text>
+<circle cx="552" cy="588" r="6" fill="#16a34a" stroke="#16a34a" stroke-width="1.5"/>
+<text x="566" y="592" font-size="13" fill="#0f172a">ICL tracks Bayes-optimal (toy data)</text>
+<circle cx="552" cy="614" r="6" fill="#16a34a" stroke="#16a34a" stroke-width="1.5"/>
+<text x="566" y="618" font-size="13" fill="#0f172a">ICL = portfolio of algorithms</text>
+<circle cx="552" cy="640" r="6" fill="#dc2626" stroke="#dc2626" stroke-width="1.5"/>
+<text x="566" y="644" font-size="13" fill="#0f172a">Bayes-invariant to surface form</text>
+<circle cx="552" cy="666" r="6" fill="#dc2626" stroke="#dc2626" stroke-width="1.5"/>
+<text x="566" y="670" font-size="13" fill="#0f172a">Asymptotic-Bayes equilibrium</text>
+<rect x="1160" y="310" width="380" height="280" rx="14" ry="14" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" filter="url(#card-shadow)"/>
+<path d="M1160,324 a14,14 0 0 1 14,-14 h352 a14,14 0 0 1 14,14 v26 h-380 z" fill="url(#hdr-05)"/>
+<text x="1176" y="336" font-size="15" font-weight="700" fill="#ffffff">05 — Emergence &amp; Reasoning</text>
+<text x="1176" y="372" font-size="12.5" fill="#334155" font-style="italic">Strong Wei-emergence refuted; test-time-compute alive.</text>
+<circle cx="1182" cy="398" r="6" fill="#dc2626" stroke="#dc2626" stroke-width="1.5"/>
+<text x="1196" y="402" font-size="13" fill="#0f172a">Strong (Wei) emergence</text>
+<circle cx="1182" cy="424" r="6" fill="#16a34a" stroke="#16a34a" stroke-width="1.5"/>
+<text x="1196" y="428" font-size="13" fill="#0f172a">Metric-artifact (Schaeffer)</text>
+<circle cx="1182" cy="450" r="6" fill="#eab308" stroke="#eab308" stroke-width="1.5"/>
+<text x="1196" y="454" font-size="13" fill="#0f172a">Test-time-compute scaling</text>
+<circle cx="1182" cy="476" r="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="1196" y="480" font-size="13" fill="#0f172a">Strict complex-systems emergence</text>
+<circle cx="632" cy="846" r="6" fill="#16a34a" stroke="#16a34a" stroke-width="1.5"/>
+<text x="646" y="850" font-size="13" fill="#475569">supported</text>
+<circle cx="737" cy="846" r="6" fill="#eab308" stroke="#eab308" stroke-width="1.5"/>
+<text x="751" y="850" font-size="13" fill="#475569">contested</text>
+<circle cx="842" cy="846" r="6" fill="#dc2626" stroke="#dc2626" stroke-width="1.5"/>
+<text x="856" y="850" font-size="13" fill="#475569">refuted</text>
+<circle cx="933" cy="846" r="6" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="947" y="850" font-size="13" fill="#475569">open</text>
+<text x="800" y="876" text-anchor="middle" font-size="13" fill="#94a3b8">Solid arrow = supports · Dashed red = in tension · 42 papers tracked · See README + tracker/falsification-events.md for the ledger</text>
+</svg>

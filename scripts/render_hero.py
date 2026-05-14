@@ -31,6 +31,15 @@ PROGRAMMES = [
     ("05", "Emergence",         "#fb923c", "🔴"),
 ]
 
+# cairosvg cannot render colored emoji glyphs (they render as ☐ in the PNG),
+# so the SVG draws status indicators as real <circle> shapes.
+STATUS_PIP = {
+    "🟢": ("#22c55e", "#22c55e"),  # green-500
+    "🟡": ("#eab308", "#eab308"),  # yellow-500
+    "🔴": ("#ef4444", "#ef4444"),  # red-500
+    "⚪": ("#0f172a", "#94a3b8"),  # dark fill (visible on dark bg), slate ring
+}
+
 
 def render_svg() -> str:
     out: list[str] = []
@@ -124,9 +133,10 @@ def render_svg() -> str:
             f'<text x="{base_x + 44}" y="{row_y + 5}" font-size="20" '
             f'font-weight="600" fill="#f1f5f9">{x(name)}</text>'
         )
+        pip_fill, pip_stroke = STATUS_PIP[status]
         out.append(
-            f'<text x="{base_x + 270}" y="{row_y + 7}" font-size="20">'
-            f'{x(status)}</text>'
+            f'<circle cx="{base_x + 270}" cy="{row_y}" r="9" '
+            f'fill="{pip_fill}" stroke="{pip_stroke}" stroke-width="1.5"/>'
         )
 
     out.append('</svg>')

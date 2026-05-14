@@ -1,7 +1,6 @@
 # `docs/` — the GitHub Pages site
 
-> Source for the live site at <https://OWNER.github.io/awesome-why-llms-work/>.
-> Replace `OWNER` with the actual repo owner before/at launch.
+> Source for the live site at <https://bettyguo.github.io/awesome-why-llms-work/>.
 
 The site is deliberately small: vanilla HTML/CSS/JS + Tailwind via CDN, no
 build step. It pulls structured content from `docs/data/ledger.json`, which

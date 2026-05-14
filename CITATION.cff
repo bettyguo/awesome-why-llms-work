@@ -9,7 +9,7 @@ authors:
   - name: "Contributors of awesome-why-llms-work"
 date-released: "2026-05-14"
 license: CC-BY-4.0
-url: "https://github.com/OWNER/awesome-why-llms-work"
+url: "https://github.com/bettyguo/awesome-why-llms-work"
 keywords:
   - mechanistic-interpretability
   - llm
@@ -21,4 +21,4 @@ keywords:
   - research-programmes
 identifiers:
   - type: url
-    value: "https://github.com/OWNER/awesome-why-llms-work"
+    value: "https://github.com/bettyguo/awesome-why-llms-work"

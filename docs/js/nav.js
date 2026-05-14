@@ -26,7 +26,7 @@
           ${link('superposition-demo.html', 'Demo')}
         </nav>
         <div class="ml-auto flex items-center gap-3 text-sm">
-          <a href="https://github.com/OWNER/awesome-why-llms-work"
+          <a href="https://github.com/bettyguo/awesome-why-llms-work"
              class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 font-medium">
              GitHub →
           </a>

@@ -37,7 +37,7 @@ function renderProgrammesGrid(programmes) {
   grid.innerHTML = programmes.map(p => {
     const c = countStatuses(p);
     const id = p.id;
-    const fileUrl = `https://github.com/OWNER/awesome-why-llms-work/blob/main/${p.file}`;
+    const fileUrl = `https://github.com/bettyguo/awesome-why-llms-work/blob/main/${p.file}`;
     return `
       <a href="${fileUrl}" data-pid="${id}" class="programme-card block">
         <div class="flex items-start gap-3 mb-3">

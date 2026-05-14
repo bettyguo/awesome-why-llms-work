@@ -179,6 +179,70 @@ def line_endpoints(
     return x1, y1, x2, y2
 
 
+# ---- shared layout math (used by both render_svg() and validate_layout()) ----
+
+ARC_APEX_Y = 60      # y of the cubic-bezier control points for "arc" routes
+ARC_END_PAD = 8      # gap above source/dest card for arc start/end
+
+
+def label_width(label: str) -> int:
+    """Match the width formula used by draw_label() inside render_svg()."""
+    return max(70, int(len(label) * 7.5) + 20)
+
+
+def edge_label_center(
+    src: str, dst: str, route: str
+) -> tuple[int, int]:
+    """Return (mx, my) where the edge's white pill label is centered.
+    Mirrors the math the renderer uses for both straight and arc routes."""
+    if route == "arc":
+        sx, sy = box_top(src)
+        ex, ey = box_top(dst)
+        sy_out = sy - ARC_END_PAD
+        ey_in = ey - ARC_END_PAD
+        mx = (sx + ex) // 2
+        my = int((sy_out + ey_in) / 8 + 0.75 * ARC_APEX_Y)
+        return mx, my
+    x1, y1, x2, y2 = line_endpoints(src, dst, pad=8)
+    return (x1 + x2) // 2, (y1 + y2) // 2
+
+
+def edge_label_rect(
+    src: str, dst: str, label: str, route: str
+) -> tuple[int, int, int, int]:
+    """(x, y, w, h) of the rounded-rect label background, matching draw_label()."""
+    mx, my = edge_label_center(src, dst, route)
+    lw = label_width(label)
+    return (mx - lw // 2, my - 12, lw, 22)
+
+
+def _rects_overlap(
+    a: tuple[int, int, int, int], b: tuple[int, int, int, int]
+) -> bool:
+    ax, ay, aw, ah = a
+    bx, by, bw, bh = b
+    return not (ax + aw <= bx or bx + bw <= ax or ay + ah <= by or by + bh <= ay)
+
+
+def validate_layout() -> list[str]:
+    """Return a list of human-readable overlap warnings.
+
+    A warning is produced for every (edge_label, card) pair whose rectangles
+    intersect. The original layout bug (label "transient ICL ↔ training-time
+    emergence" sitting on card 04 / card 05) would be caught here.
+    """
+    warnings: list[str] = []
+    for src, dst, label, _kind, route in EDGES:
+        lr = edge_label_rect(src, dst, label, route)
+        for pid, (bx, by, bw, bh) in LAYOUT.items():
+            if _rects_overlap(lr, (bx, by, bw, bh)):
+                warnings.append(
+                    f"edge {src}->{dst} label {label!r} (rect {lr}) "
+                    f"overlaps card {pid} (rect {(bx, by, bw, bh)})"
+                )
+    return warnings
+
+
 def render_svg() -> str:
     out: list[str] = []
     out.append(
@@ -239,8 +303,9 @@ def render_svg() -> str:
     )
 
     def draw_label(mx: int, my: int, label: str, color: str) -> None:
-        # ~7.5 px per character at 12pt; min width keeps short labels readable.
-        lw = max(70, int(len(label) * 7.5) + 20)
+        # Width formula must match label_width() so validate_layout() sees the
+        # same rect the renderer draws.
+        lw = label_width(label)
         out.append(
             f'<rect x="{mx - lw // 2}" y="{my - 12}" width="{lw}" height="22" '
             f'rx="11" ry="11" fill="white" stroke="{color}" stroke-width="1"/>'
@@ -260,30 +325,26 @@ def render_svg() -> str:
 
         if route == "arc":
             # Cubic bezier arcing over the top: leave src from its top edge,
-            # enter dst at its top edge, control points lifted to y=cy.
+            # enter dst at its top edge, control points lifted to y=ARC_APEX_Y.
             sx, sy = box_top(src)
             ex, ey = box_top(dst)
-            sy_out = sy - 8  # tiny gap above src card
-            ey_in = ey - 8   # tiny gap above dst card, arrow points down into it
-            cy = 60          # apex of the arc, well above all cards
+            sy_out = sy - ARC_END_PAD
+            ey_in = ey - ARC_END_PAD
             out.append(
-                f'<path d="M {sx} {sy_out} C {sx} {cy} {ex} {cy} {ex} {ey_in}" '
+                f'<path d="M {sx} {sy_out} C {sx} {ARC_APEX_Y} '
+                f'{ex} {ARC_APEX_Y} {ex} {ey_in}" '
                 f'fill="none" stroke="{color}" stroke-width="2" {dash} '
                 f'marker-end="{marker}"/>'
             )
-            # Midpoint of cubic with P1.y == P2.y == cy:
-            #   y(0.5) = (sy_out + ey_in)/8 + 3*cy/4
-            mx = (sx + ex) // 2
-            my = int((sy_out + ey_in) / 8 + 0.75 * cy)
-            draw_label(mx, my, label, color)
         else:
             x1, y1, x2, y2 = line_endpoints(src, dst, pad=8)
             out.append(
                 f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" '
                 f'stroke="{color}" stroke-width="2" {dash} marker-end="{marker}"/>'
             )
-            mx, my = (x1 + x2) // 2, (y1 + y2) // 2
-            draw_label(mx, my, label, color)
+
+        mx, my = edge_label_center(src, dst, route)
+        draw_label(mx, my, label, color)
 
     # Programme cards.
     for pid, (bx, by, bw, bh) in LAYOUT.items():
@@ -397,7 +458,23 @@ def main() -> int:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--out-svg", default="taxonomy.svg")
     p.add_argument("--out-png", default="taxonomy.png")
+    p.add_argument(
+        "--strict",
+        action="store_true",
+        help="exit non-zero if any edge label overlaps a card rectangle",
+    )
     args = p.parse_args()
+
+    warnings = validate_layout()
+    for w in warnings:
+        print(f"layout warning: {w}", file=sys.stderr)
+    if warnings and args.strict:
+        print(
+            f"layout check failed: {len(warnings)} overlap(s). "
+            f"Adjust LAYOUT, shorten labels, or change edge route.",
+            file=sys.stderr,
+        )
+        return 2
 
     svg = render_svg()
     Path(args.out_svg).write_text(svg, encoding="utf-8")

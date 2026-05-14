@@ -9,11 +9,11 @@
 </p>
 
 <p align="center">
-  <a href="https://OWNER.github.io/awesome-why-llms-work/"><strong>🌐 Live site</strong></a>
+  <a href="https://bettyguo.github.io/awesome-why-llms-work/"><strong>🌐 Live site</strong></a>
   &nbsp;·&nbsp;
-  <a href="https://OWNER.github.io/awesome-why-llms-work/ledger.html"><strong>📊 Interactive ledger</strong></a>
+  <a href="https://bettyguo.github.io/awesome-why-llms-work/ledger.html"><strong>📊 Interactive ledger</strong></a>
   &nbsp;·&nbsp;
-  <a href="https://OWNER.github.io/awesome-why-llms-work/superposition-demo.html"><strong>🧪 Run the demo</strong></a>
+  <a href="https://bettyguo.github.io/awesome-why-llms-work/superposition-demo.html"><strong>🧪 Run the demo</strong></a>
   &nbsp;·&nbsp;
   <a href="notebooks/"><strong>📓 Notebooks</strong></a>
 </p>
@@ -21,8 +21,8 @@
 <p align="center">
   <a href="LICENSE-content"><img src="https://img.shields.io/badge/Content-CC--BY--4.0-lightgrey.svg" alt="License: CC BY 4.0"></a>
   <a href="LICENSE-code"><img src="https://img.shields.io/badge/Code-MIT-blue.svg" alt="License: MIT"></a>
-  <a href=".github/workflows/link-check.yml"><img src="https://github.com/OWNER/awesome-why-llms-work/actions/workflows/link-check.yml/badge.svg" alt="Link check"></a>
-  <a href=".github/workflows/citation-verify.yml"><img src="https://github.com/OWNER/awesome-why-llms-work/actions/workflows/citation-verify.yml/badge.svg" alt="Citation verify"></a>
+  <a href=".github/workflows/link-check.yml"><img src="https://github.com/bettyguo/awesome-why-llms-work/actions/workflows/link-check.yml/badge.svg" alt="Link check"></a>
+  <a href=".github/workflows/citation-verify.yml"><img src="https://github.com/bettyguo/awesome-why-llms-work/actions/workflows/citation-verify.yml/badge.svg" alt="Citation verify"></a>
   <img src="https://img.shields.io/badge/papers-42%20verified-success" alt="42 papers verified">
   <img src="https://img.shields.io/badge/claims-41%20tracked-informational" alt="41 claims tracked">
   <img src="https://img.shields.io/badge/programmes-5%20core%20%2B%20adjacent-blueviolet" alt="5 programmes">
@@ -44,13 +44,13 @@ If you want a flat bibliography, see the [companion repos](#related-and-companio
 
 ## 🌐 The live site
 
-A polished, interactive GitHub Pages companion lives at **<https://OWNER.github.io/awesome-why-llms-work/>** (replace `OWNER` after launch). It pulls structured data straight from the per-programme files in this repo and presents:
+A polished, interactive GitHub Pages companion lives at **<https://bettyguo.github.io/awesome-why-llms-work/>**. It pulls structured data straight from the per-programme files in this repo and presents:
 
 | Page | What you get |
 |------|-------------|
-| **[Landing](https://OWNER.github.io/awesome-why-llms-work/)** | Hero, five programme cards, live status snapshot, embedded taxonomy diagram. |
-| **[Interactive ledger](https://OWNER.github.io/awesome-why-llms-work/ledger.html)** | All 41 tracked claims, filterable by programme and status, full-text searchable, row-expand to see supporting / refuting citations. |
-| **[Superposition demo](https://OWNER.github.io/awesome-why-llms-work/superposition-demo.html)** | Trains a 2-layer model on sparse synthetic features **in your browser** and shows the encoder columns arranging into regular-polygon configurations (digon → triangle → pentagon → hexagon) as you slide sparsity. The Elhage-et-al-2022 toy model, no install. |
+| **[Landing](https://bettyguo.github.io/awesome-why-llms-work/)** | Hero, five programme cards, live status snapshot, embedded taxonomy diagram. |
+| **[Interactive ledger](https://bettyguo.github.io/awesome-why-llms-work/ledger.html)** | All 41 tracked claims, filterable by programme and status, full-text searchable, row-expand to see supporting / refuting citations. |
+| **[Superposition demo](https://bettyguo.github.io/awesome-why-llms-work/superposition-demo.html)** | Trains a 2-layer model on sparse synthetic features **in your browser** and shows the encoder columns arranging into regular-polygon configurations (digon → triangle → pentagon → hexagon) as you slide sparsity. The Elhage-et-al-2022 toy model, no install. |
 
 Source: [`docs/`](docs/) (vanilla HTML/CSS/JS + Tailwind via CDN, no build step). Deploy is wired up in [`.github/workflows/pages.yml`](.github/workflows/pages.yml).
 
@@ -132,11 +132,11 @@ Each notebook is a teaching artifact: it states a falsifiable claim in the title
 
 | # | Programme | Notebook | Claim demonstrated | Colab |
 |---|-----------|----------|--------------------|-------|
-| 01 | Compression | [`01-compression-ratio-vs-benchmark.ipynb`](notebooks/01-compression-ratio-vs-benchmark.ipynb) | Bits-per-byte on a fixed corpus correlates with MMLU score across a small sample of open models. | [Open](https://colab.research.google.com/github/OWNER/awesome-why-llms-work/blob/main/notebooks/01-compression-ratio-vs-benchmark.ipynb) |
-| 02 | Superposition | [`02-toy-superposition.ipynb`](notebooks/02-toy-superposition.ipynb) | A 2-layer model with a bottleneck packs more sparse features than it has dimensions, recoverable as linear directions. | [Open](https://colab.research.google.com/github/OWNER/awesome-why-llms-work/blob/main/notebooks/02-toy-superposition.ipynb) |
-| 03 | Circuits | [`03-induction-head-discovery.ipynb`](notebooks/03-induction-head-discovery.ipynb) | A small transformer trained on a copy task develops an attention pattern with the induction-head signature. | [Open](https://colab.research.google.com/github/OWNER/awesome-why-llms-work/blob/main/notebooks/03-induction-head-discovery.ipynb) |
-| 04 | ICL-as-Bayes | [`04-icl-as-bayes-hmm-mixture.ipynb`](notebooks/04-icl-as-bayes-hmm-mixture.ipynb) | On a synthetic mixture-of-HMMs, in-context predictions track the Bayes-optimal posterior as context length grows. | [Open](https://colab.research.google.com/github/OWNER/awesome-why-llms-work/blob/main/notebooks/04-icl-as-bayes-hmm-mixture.ipynb) |
-| 05 | Emergence | [`05-emergence-mirage-demo.ipynb`](notebooks/05-emergence-mirage-demo.ipynb) | The same model family looks "emergent" under exact-match accuracy and "smooth" under token-edit-distance. | [Open](https://colab.research.google.com/github/OWNER/awesome-why-llms-work/blob/main/notebooks/05-emergence-mirage-demo.ipynb) |
+| 01 | Compression | [`01-compression-ratio-vs-benchmark.ipynb`](notebooks/01-compression-ratio-vs-benchmark.ipynb) | Bits-per-byte on a fixed corpus correlates with MMLU score across a small sample of open models. | [Open](https://colab.research.google.com/github/bettyguo/awesome-why-llms-work/blob/main/notebooks/01-compression-ratio-vs-benchmark.ipynb) |
+| 02 | Superposition | [`02-toy-superposition.ipynb`](notebooks/02-toy-superposition.ipynb) | A 2-layer model with a bottleneck packs more sparse features than it has dimensions, recoverable as linear directions. | [Open](https://colab.research.google.com/github/bettyguo/awesome-why-llms-work/blob/main/notebooks/02-toy-superposition.ipynb) |
+| 03 | Circuits | [`03-induction-head-discovery.ipynb`](notebooks/03-induction-head-discovery.ipynb) | A small transformer trained on a copy task develops an attention pattern with the induction-head signature. | [Open](https://colab.research.google.com/github/bettyguo/awesome-why-llms-work/blob/main/notebooks/03-induction-head-discovery.ipynb) |
+| 04 | ICL-as-Bayes | [`04-icl-as-bayes-hmm-mixture.ipynb`](notebooks/04-icl-as-bayes-hmm-mixture.ipynb) | On a synthetic mixture-of-HMMs, in-context predictions track the Bayes-optimal posterior as context length grows. | [Open](https://colab.research.google.com/github/bettyguo/awesome-why-llms-work/blob/main/notebooks/04-icl-as-bayes-hmm-mixture.ipynb) |
+| 05 | Emergence | [`05-emergence-mirage-demo.ipynb`](notebooks/05-emergence-mirage-demo.ipynb) | The same model family looks "emergent" under exact-match accuracy and "smooth" under token-edit-distance. | [Open](https://colab.research.google.com/github/bettyguo/awesome-why-llms-work/blob/main/notebooks/05-emergence-mirage-demo.ipynb) |
 
 Each notebook also says explicitly **what it does not show** — the failure mode of mini-experiments is overgeneralization, and we want to be loud about it.
 
@@ -241,7 +241,7 @@ If this repo helped a paper or talk, please cite it:
   title  = {Why Do LLMs Work? A Falsifiable-Hypothesis Atlas},
   author = {Contributors of {\tt awesome-why-llms-work}},
   year   = {2026},
-  url    = {https://github.com/OWNER/awesome-why-llms-work},
+  url    = {https://github.com/bettyguo/awesome-why-llms-work},
   note   = {CC-BY-4.0 content; MIT code}
 }
 ```

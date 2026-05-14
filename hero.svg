@@ -22,21 +22,21 @@
 <circle cx="1256" cy="110" r="14" fill="#60a5fa"/>
 <text x="1256" y="115" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">01</text>
 <text x="1284" y="115" font-size="20" font-weight="600" fill="#f1f5f9">Compression</text>
-<text x="1510" y="117" font-size="20">🟡</text>
+<circle cx="1510" cy="110" r="9" fill="#eab308" stroke="#eab308" stroke-width="1.5"/>
 <circle cx="1256" cy="160" r="14" fill="#34d399"/>
 <text x="1256" y="165" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">02</text>
 <text x="1284" y="165" font-size="20" font-weight="600" fill="#f1f5f9">Superposition</text>
-<text x="1510" y="167" font-size="20">🟢</text>
+<circle cx="1510" cy="160" r="9" fill="#22c55e" stroke="#22c55e" stroke-width="1.5"/>
 <circle cx="1256" cy="210" r="14" fill="#f87171"/>
 <text x="1256" y="215" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">03</text>
 <text x="1284" y="215" font-size="20" font-weight="600" fill="#f1f5f9">Circuits</text>
-<text x="1510" y="217" font-size="20">🟢</text>
+<circle cx="1510" cy="210" r="9" fill="#22c55e" stroke="#22c55e" stroke-width="1.5"/>
 <circle cx="1256" cy="260" r="14" fill="#a78bfa"/>
 <text x="1256" y="265" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">04</text>
 <text x="1284" y="265" font-size="20" font-weight="600" fill="#f1f5f9">ICL-as-Bayes</text>
-<text x="1510" y="267" font-size="20">🟡</text>
+<circle cx="1510" cy="260" r="9" fill="#eab308" stroke="#eab308" stroke-width="1.5"/>
 <circle cx="1256" cy="310" r="14" fill="#fb923c"/>
 <text x="1256" y="315" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">05</text>
 <text x="1284" y="315" font-size="20" font-weight="600" fill="#f1f5f9">Emergence</text>
-<text x="1510" y="317" font-size="20">🔴</text>
+<circle cx="1510" cy="310" r="9" fill="#ef4444" stroke="#ef4444" stroke-width="1.5"/>
 </svg>

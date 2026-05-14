@@ -1,0 +1,27 @@
+name: citation-verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Verify arXiv citations
+        run: |
+          python scripts/verify_citations.py
+          # NOTE: --strict is off so author/year warnings do not fail CI.
+          # Missing arXiv IDs (hard failures) still block the build.

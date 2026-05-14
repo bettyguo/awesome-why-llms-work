@@ -1,0 +1,63 @@
+name: arxiv-ingest
+
+on:
+  schedule:
+    # Weekly Monday at 09:00 UTC.
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+    inputs:
+      since:
+        description: "ISO date; only include arXiv entries published on or after this date"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Compute --since
+        id: since
+        run: |
+          if [ -n "${{ github.event.inputs.since }}" ]; then
+            echo "since=${{ github.event.inputs.since }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "since=$(date -u -d '14 days ago' +%F)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run ingestion
+        run: |
+          mkdir -p tracker
+          TODAY=$(date -u +%F)
+          python scripts/ingest_arxiv.py \
+            --since "${{ steps.since.outputs.since }}" \
+            --out "tracker/inbox-${TODAY}.md"
+
+      - name: Open draft PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: arxiv-ingest/${{ steps.since.outputs.since }}
+          base: main
+          title: "chore(ingest): arXiv candidates since ${{ steps.since.outputs.since }}"
+          commit-message: "chore(ingest): arXiv candidates since ${{ steps.since.outputs.since }}"
+          draft: true
+          body: |
+            Automated weekly arXiv ingestion. Every candidate below requires:
+            - programme assignment
+            - epistemic status
+            - a ≤ 80-word annotation from actual reading (not abstract paraphrase)
+            - a falsifier (or `none`)
+
+            Triage each entry into the appropriate `programmes/*` file and delete
+            from the inbox. Closing this PR without triage is fine — entries are
+            informational, not load-bearing.

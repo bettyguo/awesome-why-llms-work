@@ -1,0 +1,32 @@
+name: link-check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Nightly at 03:17 UTC.
+    - cron: "17 3 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check Markdown links
+        run: |
+          python scripts/check_links.py \
+            --paths README.md GLOSSARY.md DECISIONS.md CONTRIBUTING.md programmes essays reading-paths tracker \
+            --max-workers 6 \
+            --timeout 25 \
+            --exclude '(^https?://OWNER/|^https?://localhost|\.local$|^https?://colab\.research\.google\.com/github/OWNER/)'

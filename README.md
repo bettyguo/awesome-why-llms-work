@@ -239,7 +239,7 @@ If this repo helped a paper or talk, please cite it:
 ```bibtex
 @misc{awesome-why-llms-work,
   title  = {Why Do LLMs Work? A Falsifiable-Hypothesis Atlas},
-  author = {Contributors of {\tt awesome-why-llms-work}},
+  author = {Donxin Guo},
   year   = {2026},
   url    = {https://github.com/bettyguo/awesome-why-llms-work},
   note   = {CC-BY-4.0 content; MIT code}

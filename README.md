@@ -22,7 +22,6 @@
   <a href="LICENSE-content"><img src="https://img.shields.io/badge/Content-CC--BY--4.0-lightgrey.svg" alt="License: CC BY 4.0"></a>
   <a href="LICENSE-code"><img src="https://img.shields.io/badge/Code-MIT-blue.svg" alt="License: MIT"></a>
   <a href=".github/workflows/link-check.yml"><img src="https://github.com/bettyguo/awesome-why-llms-work/actions/workflows/link-check.yml/badge.svg" alt="Link check"></a>
-  <a href=".github/workflows/citation-verify.yml"><img src="https://github.com/bettyguo/awesome-why-llms-work/actions/workflows/citation-verify.yml/badge.svg" alt="Citation verify"></a>
   <img src="https://img.shields.io/badge/papers-42%20verified-success" alt="42 papers verified">
   <img src="https://img.shields.io/badge/claims-41%20tracked-informational" alt="41 claims tracked">
   <img src="https://img.shields.io/badge/programmes-5%20core%20%2B%20adjacent-blueviolet" alt="5 programmes">
@@ -70,11 +69,6 @@ Source: [`docs/`](docs/) (vanilla HTML/CSS/JS + Tailwind via CDN, no build step)
 - [Adjacent programmes](#adjacent-programmes)
 - [Glossary](#glossary)
 - [Tools](#tools)
-- [FAQ](#faq)
-- [Contributing](#contributing)
-- [Citation](#citation)
-- [Related and companion repos](#related-and-companion-repos)
-- [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -213,54 +207,3 @@ See [`GLOSSARY.md`](GLOSSARY.md). 60+ terms, each with a one-paragraph definitio
 
 See [`TOOLS.md`](TOOLS.md). An opinionated index of the libraries and services this repo's programmes are *load-bearing* on — TransformerLens, SAELens, nnsight, Pyvene, Neuronpedia, Goodfire Ember, ACDC / EAP, circuit-tracer. We deliberately stop at "load-bearing"; for exhaustive tool directories, see the [related repos](#related-and-companion-repos).
 
----
-
-## FAQ
-
-See [`FAQ.md`](FAQ.md) for the questions we get most. Highlights: *why five programmes*, *isn't your taxonomy itself contested*, *how do I disagree with a status verdict*, *why isn't scaling-laws a programme*, *is this safety / alignment commentary* (no).
-
----
-
-## Contributing
-
-We accept PRs. The contribution schema is strict on purpose — see [`CONTRIBUTING.md`](CONTRIBUTING.md). In short:
-
-- Every paper added must carry an **epistemic status**, a **programme assignment**, a **falsification implication**, and a **≤ 80-word annotation that reflects actual reading, not abstract paraphrase**.
-- Status changes are PRs of their own ([template](.github/ISSUE_TEMPLATE/status-change.md)). A 🟢 → 🔴 move requires a cited refuting paper, not a vibe.
-- All citations are verified by `scripts/verify_citations.py` in CI; unverifiable citations are rejected automatically.
-- We have a [Code of Conduct](CODE_OF_CONDUCT.md). It is short and not a joke.
-
----
-
-## Citation
-
-If this repo helped a paper or talk, please cite it:
-
-```bibtex
-@misc{awesome-why-llms-work,
-  title  = {Why Do LLMs Work? A Falsifiable-Hypothesis Atlas},
-  author = {Donxin Guo},
-  year   = {2026},
-  url    = {https://github.com/bettyguo/awesome-why-llms-work},
-  note   = {CC-BY-4.0 content; MIT code}
-}
-```
-
----
-
-## Related and companion repos
-
-The following are *good* and we link rather than duplicate. If your question is "what papers exist?" rather than "what should I believe?", any of them is a fine starting point. We audit them in [`_internal/competitor_audit.md`](_internal/competitor_audit.md).
-
-- [`JShollaj/awesome-llm-interpretability`](https://github.com/JShollaj/awesome-llm-interpretability) — broad tool + paper directory.
-- [`ruizheliUOA/Awesome-Interpretability-in-Large-Language-Models`](https://github.com/ruizheliUOA/Awesome-Interpretability-in-Large-Language-Models) — large bibliography organized by sub-area (SAEs in particular).
-- [`cooperleong00/Awesome-LLM-Interpretability`](https://github.com/cooperleong00/Awesome-LLM-Interpretability) — topic-indexed bibliography with stars on influential entries.
-- [`Dakingrai/awesome-mechanistic-interpretability-lm-papers`](https://github.com/Dakingrai/awesome-mechanistic-interpretability-lm-papers) — survey-driven taxonomy with TL;DR annotations.
-
-We thank the maintainers of these lists; this repo would have been harder to write without them.
-
----
-
-## Acknowledgements
-
-The framing of this repo owes obvious debts to Imre Lakatos (research programmes), Karl Popper (falsifiability), and the long line of mechanistic-interpretability researchers: Chris Olah, Neel Nanda, Catherine Olsson, the Anthropic interpretability team, EleutherAI, MATS, who treated "what is the model actually doing?" as a serious empirical question well before the rest of the field caught up. Errors are entirely ours.
